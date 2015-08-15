@@ -211,8 +211,9 @@ MAP (@SUBJ) TARGET (Pron Pers) IF (-1 (Cop)) (NOT 1 (Rel)); # mise, é
 ##########################################################################
 
 # tá airgead agam; tá airgead ag Máire
-# NOT tá súil agam ... ???? WHY NOT: I have knowledge ???
+# NOT tá súil agam ... ???? WHY NOT: I have hope ???
 # not Bhí seán ag an doras => obj of Prog must be animate (unlike doras)
+# BUT tá lámh ag doras ... is ok, tá duilleog ag crann ..
 # use only Pron Prep or Prop Noun
 MAP (@PP_HAS) TARGET ("ag" Prep) IF 
 	(1 (Prop Noun)) 
@@ -470,19 +471,26 @@ MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (NOT -1 (Part Sup)) (*-1 ("bí") BA
 MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (NOT -1 (Part Sup)) (*-1 ("bí") BARRIER (Rel) OR (@CLB)) (*-1 (Prop Noun) BARRIER (Verb)); 
 # mar atá réamhráite
 MAP (@PRED) TARGET (Verbal Adj) IF (-1 ("bí") BARRIER (@CLB)); 
+
 # inné etc which have Adj tag
 MAP (@ADVL) TARGET TIME; 
+
 # uair éigin
 MAP (@ADVL) TARGET TIME-PERIOD IF (1 ("éigin")); 
+
 # an lá sin/seo
 MAP (@ADVL) TARGET TIME-PERIOD IF (1 (Det Dem)); 
+
 # an lá a cuireadh ...
 MAP (@ADVL) TARGET TIME-PERIOD IF (1 (Part Rel)); 
+
 # bliain ó shin
 MAP (@ADVL) TARGET TIME-PERIOD IF (1 ("ó")) (2 ("sin")); 
+
 # aon uair = anytime
 #MAP (@ADVL) TARGET TIME-PERIOD IF (-1 ("aon")) (NOT 1 ("amháin")); 
 MAP (@ADVL) TARGET TIME-PERIOD IF (-1 ("aon")) ; 
+
 # inar luigh slán
 MAP (@ADVL) TARGET (Adj Base) IF (-1 (Verb)) ; 
 # bíonn gais ghlasa
@@ -496,6 +504,11 @@ MAP (@N<) TARGET ADJ-ATTR IF
 	(NOT 0 (Comp)) 
 	(NOT -1 (Part Ad) OR (Cop) OR (Its) OR (Pron)) ;
 #	(*-1 (Noun) BARRIER ANY-NOT-ADJ LINK NOT -1 (Art Def));
+# é sin, an teach sin etc
+###TO BE TESTED
+# an geata sin
+MAP (@N<) TARGET (Pron Dem) IF (-1C (Noun Com));
+
 ######################################################################
 # VERB DEPENDANTS
 ######################################################################
@@ -646,11 +659,13 @@ MAP (@>N) TARGET (Part Voc);
 # le mím agus gluaiseacht!=INF bailé=Gen 
 MAP (@INF) TARGET (Verbal Noun) IF (NOT -1 (Prep Simp) OR (Prep Poss) OR (Art) OR (Prep Cmpd) OR (Det Poss))(-1 (Pron) OR (Noun) OR (Verb)) (NOT 1 (Noun Gen)); 
 MAP (@PN<) TARGET (Pron Ref) IF (-1 (Pron)); #é féin
+MAP (@PN<) TARGET (Pron Dem) IF (-1 (Pron)); #é sin
 MAP (@N<) TARGET (Pron Ref) IF (-1 (Noun)); #an tiarna féin
 MAP (@N<) TARGET (Adj) IF (-1 (@CC)) (-2 (Adj)); # glas agus bán
 MAP (@PN<) TARGET (Pron) IF (-1 (@CC)) (-2 (Pron)); # dúirt sé agus é ag caint
 
 MAP (@ADVL) TARGET (Adj) IF ( -1C (Part Ad));
+
 # Bí go deas
 MAP (@>ADJ) TARGET (Part Ad);
 MAP (@>ADJ) TARGET (Part Sup);
@@ -668,7 +683,9 @@ MAP (@>N) TARGET (Adj) IF (-1 (Part Comp)) (1 (Noun));
 # daoine eile is cuí/ ba chuí
 # is déanta; an ceann is fearr, fadhbanna is mó
 MAP (@N<) TARGET (Adj) IF (-1 (Part Sup));
+
 MAP (@ADVL) TARGET (Adv) IF (NOT 0 (Its));
+
 # chomh/Its minic/A sin
 MAP (@ADVL) TARGET (Adj) IF (-1 (Adv Its)) ;
 # chomh/Its minic/A sin=le_sin=>ADVL
