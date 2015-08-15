@@ -1,0 +1,3 @@
+$ cd $HOME
+$ cd irishfst/map
+$ cat map2out | vislcg3 -t -g $HOME/irishfst/map/gael-map3.rle > map3out

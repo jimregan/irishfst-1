@@ -1,0 +1,709 @@
+# ==================================================================== #
+# I R I S H   D I S A M B I G U A T I O N  
+# ==================================================================== #
+# Elaine Uí Dhonnchadha
+# March 2007
+# ==================================================================== #
+# Delimiters
+# Sets
+# Mappings
+
+# ==================================================================== #
+# SENTENCE DELIMITERS
+# ==================================================================== #
+
+DELIMITERS = "<.>" "<!>" "<?>" "<#>" "<</p>>" "<</s>>" "<...>";
+
+PREFERRED-TARGETS = Pron Noun PastInd PresSubj ;
+
+# ==================================================================== #
+# SETS
+# ==================================================================== #
+SETS 
+LIST BOS = "<<p>>" "<<s>>" (>>>);
+LIST EOS = (<<<); # end of sentence for vislcg.
+
+LIST COMMA = "<,>" ;
+
+SETS
+# the genitive follows some simple prepositions and partitives,  as well as another noun, verbal noun or compound preposition
+LIST GEN-SIMP-PREP = "chun" "trasna" "timpeall" "fearacht" "dála" "cois" ;
+LIST GEN-PREP = "chun" "trasna" "timpeall" "fearacht" "dála" "cois" (Prep Cmpd) ;
+LIST GEN-PART = "roinnt" "cuid" "morán" "lán" "méid" "dosaen" "péire" "scór" ;
+
+LIST OBJ-PRON = "í" "é" "iad" "ea" ;
+
+LIST NUM-COUNT = "haon" "dó" "trí" "ceathair" "cúig" "sé" "seacht" "hocht" "naoi" "deich";
+LIST NUM-PERS = "beirt" "triúr" "ceathrar" "cúigear" "seisear" "seachtar" "ochtar" "naonúir" "deichnúir" ;  
+# prepositions commonly used before verbal nouns
+# "ar" => lemma, "<ar>" => wordform
+LIST PREP-VN = "ag" "gan" "a" "<á>" "ar" "tar éis" "chun" "le" "i ndiaidh" "ar tí" "roimh" "<ina>";
+
+LIST TITLE = "Uas." "Uas" "Dr." "Dr" "Mr" "Mr." "Mrs." "Mrs" "Miss" "Misses" "Ms." "Ms" "<Athair>" "<tAthair>";
+# this type of verbal noun can be modified by attributive adj.
+# e.g. "ag mothú tinn" but not "ag déanamh mór", "a bheith tanaí"
+LIST SENSORY-VN = "bí" "mothú" "breathnú" "éirí" ;
+
+# Any noun other than verbal-noun
+# the are several types of Noun: +Noun, Subst+Noun, Prop+Noun, Verbal+Noun,
+# Guess+Noun, but all nouns except verbal nouns have number (even guess nouns)
+LIST NOUN-NOT-VN = (Noun Sg) (Noun Pl) (Abr) ;
+LIST NOUN-OR-VN = (Noun Sg) (Noun Pl) (Verbal Noun) ;
+
+# a list of items which can precede a noun
+LIST PRENOM = (Art) (Det Poss) (Det Qty) (Num) ;
+
+# a list of items which can follow a simple preposition
+# (art def is used to exclude "sa" e.g. "shuigh sé faoi sa chathaoir"
+# rel clause: an rud as ar/Part Vb Rel(not Cop) tháinig
+# thar/Prep a/Prep bheith/VNoun
+# mar iad/Pron Pers
+LIST POST-PREP = (Noun) (Art Def) (Det) (Pron) (Num) (Part Vb Rel) (Prep Simp) (Punct Quo);
+# tá´s = tá fios = (Verb Noun)
+LIST VSYNTH = (Verb 1P) (Verb 2P) (Verb 3P) (Verb Auto) (Verb Noun);
+LIST TRANSV = (Verb VT) (Verb VTI) (Verb VD) ;
+LIST TRANSVN = (Verbal VT) (Verbal VTI) (Verbal VD) ;
+LIST N-OR-REL = (Noun) (Rel)  ;
+LIST TIME-PERIOD = "mí" "bliain" "lá" "ráithe" "uair" "seachtain" ;
+LIST TIME = "inné" "inniú" "amárach" "arú" "anocht" "aréir" "istíoche" "tráthnóna" "ardtráthnóna" "Dé" "Déardaoin";
+LIST ATTR-ONLY = "céanna" "amháin"; # not used predicatively
+LIST ADJ-ATTR = (Adj Sg) (Adj Pl) (Adj Len) (Adj Ecl) "céanna" "amháin"; # not used predicatively
+LIST NOUN-OR-PRO = (Noun) (Pron Pers) (Pron Dem) (Pron Idf); #Idf=ceachtar
+LIST SUBJECT = (@SUBJ) (@FMV_SUBJ) (@FMV_REL_SUBJ) (@FAUX_SUBJ) (@FAUX_REL_SUBJ) (@PP_SUBJ) (@COP_SUBJ) (@SUBJ_REL) (@SUBJ_OR_OBJ);
+# e.g. an GPA(Abr)
+LIST NOUN-NOM = (Noun Com) (Subst Noun) (Prop Noun) (Abr) (Unknown);
+LIST VERB-REL-O = (VT @FMV_REL) (VTI @FMV_REL);
+LIST VERB-SUBJ-O = (VT @FMV_SUBJ) (VT @FMV_REL_SUBJ) (VT @FAUX_SUBJ) (VT @FAUX_REL_SUBJ) (VTI @FMV_SUBJ) (VTI @FMV_REL_SUBJ) (VTI @FAUX_SUBJ) (VTI @FAUX_REL_SUBJ) ;
+LIST ANY = (Noun) (Pron) (Abr) (Adv) (Adj) (Prep);
+LIST ANY-NOT-ADJ = (Noun) (Pron) (Abr) (Adv) (Verb) (Prep);
+#LIST ANY = (Noun) (Pron) (Abr) ;
+LIST VERB-PREP = "ag" "ar" "as" "chun" "de" "do" "faoi" "i" "idir" "ionsar" 
+"le" "ó" "roimh" "seach" "thar" "trí" "um";
+LIST AUX = ("bí") ("téigh") ("tosaigh") ("tosnaigh") ("féad") ("caith") ("féach");
+# ==================================================================== #
+# MAPPINGS
+# ==================================================================== #
+MAPPINGS
+
+MAP (@NP) TARGET (Noun Voc);
+##########################################################################
+# VERB + PREP = Phrasal Verb
+##########################################################################
+                                                                                
+# note tá's agam : 's = fios = noun
+#MAP (@V<) TARGET (Prep) IF (-1 (Verb)) (NOT -1 VSYNTH) (NOT *-1 (Rel)) (NOT -1 (Noun)); # laghdaigh ar a neart
+# but: ... a labhair leis an mbean (not pp-loc if immed. after verb )
+# also Ind Obj e.g. thug sé an leabhar do Mháire
+#MAP (@V<) TARGET (Prep Simp) IF (0 VERB-PREP) (-1 (Verb)) (NOT -1 VSYNTH) (NOT *-1 (Rel)); # laghdaigh ar a neart
+MAP (@PP_SUBJ) TARGET (Prep Simp) IF (0 VERB-PREP) (-1 (Verb)) (NOT -1 VSYNTH OR AUX) (NOT *-1 (Rel)); # laghdaigh ar a neart
+# d´eirigh go maith leis an mac léinn
+#MAP (@V<) TARGET (Prep Simp) IF (0 VERB-PREP) (-3 (Verb)) (-2 ("go")) (-1 (Adj)) (NOT -1 VSYNTH) (NOT *-1 (Rel));
+MAP (@PP_SUBJ) TARGET (Prep Simp) IF (0 VERB-PREP) (-3 (Verb)) (-2 ("go")) (-1 (Adj)) (NOT -1 VSYNTH OR AUX) (NOT *-1 (Rel));
+#MAP (@V<+SUBJ) TARGET (Pron Prep) IF (-3 (Verb)) (-2 ("go")) (-1 (Adj)) (NOT -1 VSYNTH) (NOT *-1 (Rel));
+MAP (@PP_SUBJ) TARGET (Pron Prep) IF (-3 (Verb)) (-2 ("go")) (-1 (Adj)) (NOT -1 VSYNTH OR AUX) (NOT *-1 (Rel));
+# Prep Simp ??? NO d'éirigh leo
+#MAP (@V<+SUBJ) TARGET (Pron Prep) IF (-1 (Verb)) (NOT -1 VSYNTH) (NOT *-1 (Rel)); # laghdaigh ar a neart
+MAP (@PP_SUBJ) TARGET (Pron Prep) IF (-1 (Verb)) (NOT -1 VSYNTH) (NOT *-1 (Rel)); # laghdaigh ar a neart
+
+# ================================================================== #
+# Comparatives
+# ================================================================== #
+# níos mó féar
+# deich mbliana nó níos mó
+MAP (@>ADJ) TARGET ("níos" Part Comp)IF (1 (Adj Comp));
+# ================================================================== #
+# Pronouns
+# ================================================================== #
+# rith sí go tapadh
+MAP (@SUBJ) TARGET (Pron Sbj) ; # sí/sé/siad
+# tá mé tinn
+# NOT Rinneamar é
+# NOT a rinne é
+# NOT tá sé/subj_asp ag déanamh cáca
+MAP (@SUBJ) TARGET (Pron Pers) IF (-1 (Verb)) (NOT 1 (Prep Simp))  (NOT -1 VSYNTH) (NOT 0 OBJ-PRON); 
+
+# Buailfidh sé thú
+# NOT Dá mba mise thú ...
+MAP (@OBJ) TARGET (Pron Pers Len) IF (0 ("<thú>")) (*-1 (Verb) BARRIER (Cop)); 
+# ================================================================== #
+# Bare Infinitive: ba mhaith liom fanacht; d´iarr sé orm fanacht
+# ================================================================== #
+# not do mo chabhrú
+# not ina chónaí; i gcónaí 
+# not (Rácáil agus Scuabadh)
+MAP (@INF) TARGET (Verbal Noun VI) IF (NOT -1 (Prep Simp) OR (Det Poss) OR ("i")) (-1 (Pron) OR (Noun) OR (Verb)); #
+# rud a rá
+MAP (@>N) TARGET (Part Inf) IF (1 (Verbal Noun)); 
+MAP (@INF) TARGET (Verbal Noun) IF (-1 (Part Inf)); 
+# le/chun/taréis teacht/fanacht=INF 
+# (compare le bainne a ól vs ag ól bainne
+MAP (@INF) TARGET (Verbal Noun) IF 
+	(-1 ("<le>") OR ("<chun>") OR ("<tar éis>") 
+         OR ("<i ndiaidh>") OR ("<gan>")); 
+##########################################################################
+# Interrogatives
+##########################################################################
+# Cén cuma/fáth/chaoi a rinne sé 
+#MAP (@PRED) TARGET NOUN-OR-PRO IF (-1 (Cop Pro Q));
+# cén changed from Cop Pro Q to Cop Q
+# not An í=aug Eilis=subj  a rinné 
+# not Cé hiad=aug na daoine=subj sin?
+MAP (@PRED) TARGET NOUN-OR-PRO IF (-1 (Cop Q)) (NOT 0 OBJ-PRON);
+# Cé a rinne é?
+MAP (@SUBJ_OR_OBJ) TARGET (Pron Q);
+
+##########################################################################
+# COP + PREP(le)  OWNERSHIP: IS + LE
+##########################################################################
+
+# Is le Seán an rothar=subj.
+MAP (@PP_PRED) TARGET (Prep Simp) IF (0 ("le")) (-1 (Cop)) (1 (Art Def) OR (Prop) OR (Pron)) (2 (Art Def) OR (Prop) OR (Pron));
+# Is liomsa é=subj. An leatsa é?
+MAP (@PP_PRED) TARGET (Pron Prep) IF (0 ("le")) (-1 (Cop)) (1 (Art Def) OR (Prop) OR (Pron));
+# Is le Seán an rothar=subj.
+# not Ní liomsa Seán 
+# not Is le Denise a bhí an Daibhéadach ..
+###MAP (@PRED<) TARGET (Noun) IF (-1 (@PP_PRED)) (-1 (Prep Simp)) (1 (Noun) OR (Pron) OR PRENOM);
+MAP (@P<) TARGET (Noun) IF (-1 (@PP_PRED)) (-1 (Prep Simp)) (1 (Noun) OR (Pron) OR PRENOM);
+##########################################################################
+# COP + PREP(other) = 
+##########################################################################
+                                                                                
+# b´fhearr liom é, is maith liom, is aoibhinn liom , is fearr dom ...
+# ní mór dúinn
+# ba=cop fearr=pred liom = pp_subj é=obj
+MAP (@PP_SUBJ) TARGET (Pron Prep) IF (-1 (Adj)) (-2 (Cop));
+#MAP (@ADJP) TARGET (Adj) IF (-1 (Cop)) (-2 (Prep));
+
+##########################################################################
+# COP + PRED
+##########################################################################
+MAP (@PRED) TARGET (Subst Noun Sg) IF (0 ("féidir")); # nach féidir, is féidir, b'fhéidir
+MAP (@PRED) TARGET (Adj Base) IF (0 ("cuma")) (-1 (Cop)); # is cuma, ba chuma
+MAP (@PRED) TARGET (Adj Base Len ) IF (-1 (Cop)); # ba chuma
+MAP (@PRED) TARGET (Adj Comp Len ) IF (-1 (Cop)); # b´fhearr liom ...
+##########################################################################
+# AUGMENTED COPULA CONSTRUCTIONS (ACC)
+##########################################################################
+# IDENTIFICATION: DEFINITE NP i.e. def noun, prop noun or pronoun
+# An é Seán a bhí ann: é = aug
+# An é an carr atá mór?
+# níorbh é!=aug a rinne é
+# Sin=Cop+Pron é=subj
+#MAP (@AUG>SUBJ) TARGET (Pron Pers) IF (0 (3P)) (-1 (Cop)) (NOT -1 (Pron)) (*1 (Noun) OR (Pron Pers) BARRIER (@CLB) OR (ADJ) OR (Prep) OR (Verb)); # mise, é
+MAP (@AUG>SUBJ) TARGET OBJ-PRON IF (-1 (Cop)) (NOT -1 (Pron)) (*1 (Noun) OR (Pron Pers) BARRIER (@CLB) OR (ADJ) OR (Prep) OR (Verb)); # mise, é
+# Is é é
+#MAP (@SUBJ) TARGET (Pron Pers) IF (*-1 (@AUG>SUBJ) BARRIER (Noun)); 
+MAP (@SUBJ) TARGET NOUN-OR-PRO IF (*-1 (@AUG>SUBJ) BARRIER NOUN-OR-PRO ); 
+# Is mise an múinteoir (id)
+# NOT Is mise a thug ...
+MAP (@SUBJ) TARGET (Pron Pers) IF (-1 (Cop)) (NOT 1 (Rel)); # mise, é
+# Is (é) Brian an múinteoir (id)
+# MAP (@SUBJ) TARGET (Prop Noun) IF (-1 (Cop)) (NOT 1 (Rel)); # mise, é
+# anaphora if there is a previous noun
+# muintir Cúige Uladh iad féin 
+# NOT Iad féin agus Séan ...
+#######MAP (@NP) TARGET (Pron Pers) IF (0 ("iad") OR ("é") OR ("í")) (*-1 (Noun)); # mise, é
+
+
+##########################################################################
+# PREPOSITIONAL PHRASES
+##########################################################################
+
+# tá airgead agam; tá airgead ag Máire
+# NOT tá súil agam ... ???? WHY NOT: I have knowledge ???
+# not Bhí seán ag an doras => obj of Prog must be animate (unlike doras)
+# use only Pron Prep or Prop Noun
+MAP (@PP_HAS) TARGET ("ag" Prep) IF 
+	(1 (Prop Noun)) 
+	(NOT -1 ("súil")) 
+	(NOT 1 (Verbal Noun)) 
+	(*-1 ("bí") BARRIER (Verbal Noun) OR (@CLB)) ;
+MAP (@PP_HAS) TARGET ("ag" Pron Prep) IF 
+	(NOT -1 ("súil")) 
+	(NOT 1 (Verbal Noun)) 
+	(*-1 ("bí") BARRIER (Verbal Noun) OR (@CLB)) ;
+# ================================================================== #
+# PREP PRON + NP = ADVERBIAL PHRASE
+# ================================================================== #
+# sentence? must contain a verb if adverbial
+# BUT: as go brách leo ; a bheith ann
+MAP (@PP_ADVL) TARGET (Pron Prep);
+# tá cáca le déanamh agam!=obj-i
+# bhí an dinnéar ite agam=loc
+# bhí rí ann=loc fadó
+# arbh é é a bhí ann=loc
+
+# ================================================================== #
+# PREP SIMP + NP  
+# ================================================================== #
+# NEG PREP(gan) 
+                                                                                
+MAP (@PP_NEG) TARGET (Prep Simp) IF (0 ("gan"));
+# Níl ann ach spórt (negative polarity item
+MAP (@PP_NEG) TARGET (Prep Simp) IF (0 ("ach"));
+
+# ar oscailt
+MAP (@PP_STAT) TARGET (Prep Simp) IF (0 ("ar")) (1 (Verbal Noun)); 
+# ag gearradh
+MAP (@PP_ASP) TARGET (Prep Simp) IF (NOT 0 ("ar")) (1 (Verbal Noun)); 
+# do mo ghearradh
+MAP (@PP_ASP) TARGET (Prep Simp) IF (1 (Det Poss)) (2 (Verbal Noun)); 
+# chun/asp léitheoireacht/n a/inf fhoghlaim/vn
+MAP (@PP_ASP) TARGET GEN-SIMP-PREP IF (*1 (Verbal Noun) BARRIER (Noun Gen)); 
+
+# chun/advl an tí: when chun is locative it is followed by noun in the genitive
+MAP (@PP_ADVL) TARGET GEN-SIMP-PREP IF (*1 (Noun Gen) BARRIER (Noun)); 
+
+# le seo; ó shin
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (1 (Pron Dem) );
+# but: ... a labhair leis an mbean (not pp-loc if immed. after verb )
+# also Ind Obj e.g. thug sé an leabhar do Mháire
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (1 (Art) OR NOUN-NOT-VN OR ("a" Det Poss 3P)) (NOT -1 (Verb)) (NOT *-1 (VD) BARRIER (Prep));
+# mar amhránaí
+# also i CFL (Abr)
+# but not "thug sé an leabar do Mháire"
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (1 NOUN-NOT-VN) (NOT *-1 (VD)) (NOT *1 (VD));
+# "thug sé an leabar do Mháire"
+#MAP (@PP_OBL) TARGET (Prep Simp) IF (1 NOUN-NOT-VN) (*-1 (VD) BARRIER (Prep Simp));
+MAP (@PP_OBL) TARGET (Prep Simp) IF (*1 NOUN-NOT-VN BARRIER (Noun) or (Verb) OR (Cop)) (*-1 (VD) BARRIER (Prep Simp));
+####TEST THE FOLLOWING####TIDY THESE ALL UP 
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (1 PRENOM) (2 NOUN-NOT-VN); # do mo mhamaí / le haon dream
+# le trí chead agus a haon bliain
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (*1 NOUN-NOT-VN BARRIER (Verbal Noun) OR (Verb));
+MAP (@PP_ADVL) TARGET (Prep Simp) IF (1 (Num Dig)); # i 1977
+
+# Líonadh an poll le clocha
+###MAP (@PP_ADVL) TARGET (Prep Simp) IF (*-1 (Verb Auto));
+
+# ================================================================== #
+# PREP + ART  
+# ================================================================== #
+MAP (@PP_ADVL) TARGET (Prep Art);
+# ================================================================== #
+# CMPD PREP  
+# ================================================================== #
+# tá sé tar éis cáca(Nom???) a dhéanamh
+MAP (@PP_ASP) TARGET (Prep Cmpd) IF (*1 NOUN-NOM BARRIER (Verbal Noun)) (*-1 (@FAUX)  OR (@FAUX_SUBJ) BARRIER (Prep));
+# tar éis dul i gcomhairle
+MAP (@PP_ASP) TARGET (Prep Cmpd) IF (1 (Verbal Noun));
+# tar_éis diúltiú
+MAP (@PP_ASP) TARGET (Prep Cmpd) IF (*1 (Verbal Noun)) (*-1 (@FAUX)  OR (@FAUX_SUBJ) BARRIER (Prep));
+
+MAP (@PP_ADVL) TARGET (Prep Cmpd);
+MAP (@PP_ADVL) TARGET (Prep CmpdNoGen);
+# ================================================================== #
+# PREP POSS - STATIVE
+# ================================================================== #
+# stative: bhí sé ina mhúinteoir
+# stative: bhí sé ina chodladh
+#MAP (@PP_STAT) TARGET (Prep Poss) IF (0 ("<ina>")) (1 NOUN-NOT-VN) (*-1 ("bí") BARRIER (Verb) OR (Verbal Noun)); # 
+MAP (@PP_STAT) TARGET (Prep Poss) IF (0 ("<ina>")) (1 NOUN-OR-VN) (*-1 ("bí") BARRIER (Verb) OR (Verbal Noun)); # 
+#MAP (@PP_STAT) TARGET (Prep Poss) IF (0 ("<ina>")) (1 NOUN-NOT-VN) (*-1 ("bí") BARRIER (Verb) OR (Verbal Noun)); # 
+#tá tú i do mhúinteoir/ i mo / in ár/ i bhur ...
+MAP (@PP_STAT) TARGET (Prep Simp) IF (0 ("i")) (1 (Det Poss)) (2 NOUN-NOT-VN) (*-1 ("bí")); # 
+MAP (@PP_ADVL) TARGET (Prep Poss) IF (1 NOUN-NOT-VN); # ina dhiaidh
+MAP (@PP_ADVL) TARGET (Prep Poss) IF (*1 NOUN-NOT-VN BARRIER (Noun)); # ina ´gcúiseanna teanga´
+#MAP (@PP_ASP) TARGET (Prep Poss) IF (1 (Verbal Noun)); # á ngearradh
+MAP (@PP_ASP) TARGET ("do" Prep Poss) IF (1 (Verbal Noun)); # á ngearradh
+
+##########################################################################
+# Noun Dependants
+##########################################################################
+# NOT tar éis cáca a dhéanamh
+#MAP (@PC<) TARGET (Noun Gen) (*-1 (Prep Cmpd) BARRIER (Noun) OR (Prep));
+# Bryan Mc Fadden; Dr. O' Meara
+# chun na scoile
+# NOT chun cáca a dhéanamh
+#MAP (@P<) TARGET (Noun Gen) (*-1 GEN-PREP BARRIER (Noun) OR (Prep)) (NOT *1 ("a" Prep Simp) BARRIER (@CLB) OR (Rel)) ;
+MAP (@P<) TARGET (Noun Gen) (*-1 GEN-PREP BARRIER (Noun) OR (Prep)) (NOT *1 (Part Inf) BARRIER (@CLB) OR (Rel)) ;
+# allow for os_comhair an Bhreithimh
+MAP (@N<) TARGET (Prop Noun) (-1 (Prop Noun));
+#MAP (@N<) TARGET (Prop Noun) (-1 (Part Pat)) (-2 (Prop Noun));
+MAP (@N<) TARGET (Prop Noun) (-1 (Part Pat)) (-2 (Noun) OR TITLE);
+MAP (@N<) TARGET (Noun) (-1 (Part Pat)) (-2 (Noun) OR TITLE);
+MAP (@N<) TARGET (Prop Noun) (-1 TITLE);
+# ag déanamh gíoscáin
+MAP (@OBJ_ASP) TARGET (Noun Gen) (-1 (Verbal Noun));
+MAP (@OBJ_ASP) TARGET (Noun Gen) (-1 (Art Def)) (-2 (Verbal Noun) );
+# NOT a eisiúint laistigh den tréimshe/!obj
+# NOT gníomhaíochtaí grúpála agus athainmnithe
+MAP (@OBJ_ASP) TARGET (Noun Gen) (*-1 (Verbal Noun) BARRIER (Noun) OR (Prep) LINK NOT 0 (Gen));
+# halla an bhaile
+MAP (@N<) TARGET (Noun Gen) (*-1 NOUN-NOT-VN BARRIER (Prep Cmpd));
+# possessive gen: hata Sheán;  tithe lucht/len oibre
+# beirt fhear ?
+MAP (@N<) TARGET (Noun Len) (-1 NOUN-NOT-VN);
+
+#MAP (@OBJ) TARGET NOUN-OR-PRO IF (*-1 (@P+SUBJ) BARRIER (Prep))(*-1 TRANSV);
+#MAP (@OBJ) TARGET NOUN-OR-PRO IF (*-1 (@P+SUBJ) BARRIER (Prep))(*1 TRANSV);
+# is airde sliabh ná cnoc; níos mó ná Seán; 
+# níos mó ná aon duine eile 
+
+##########################################################################
+# SUBJ OF INFINITIVE 
+# should come before @P< 
+# ar an gcuntas a bheith ...-> prefer cuntas to be SUBJ_INF than P<
+##########################################################################
+# eagla a bheith orthu, aonad a bheith againn
+MAP (@SUBJ_INF) TARGET NOUN-NOM IF 
+	(NOT 0 (Noun Gen)) 
+	(*1 (Part Inf) BARRIER NOUN-NOM OR (Verbal Noun) OR (Pron Pers) OR (Prep) LINK 1 (Verbal Noun VI) );
+# iadsan a bheith ar an ...
+MAP (@SUBJ_INF) TARGET (Pron Pers) IF 
+	(NOT 0 (Noun Gen)) 
+	(*1 (Part Inf) BARRIER NOUN-NOM OR (Verbal Noun) OR (Pron Pers) OR (Prep) LINK 1 (Verbal Noun VI) );
+##########################################################################
+# tá mé tar éis cáca a dhéanamh
+# object of an transitive (VT/VTI/VD) infinitive ...
+# na breoslaí seo a úsáid
+# NOTE barrier = noun + pron pers, and applies to do + a
+MAP (@OBJ_INF) TARGET NOUN-NOT-VN IF 
+	(NOT 0 (Noun Gen)) 
+	(*1 (Part Inf) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+	#(*1 ("a" Prep Simp) OR ("do" Prep Simp) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+# tá mé tar éis cáca a dhéanamh
+MAP (@OBJ_INF) TARGET NOUN-OR-VN IF 
+	(-1 GEN-PREP) 
+	(*1 (Part Inf) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+	#(*1 ("a" Prep Simp) OR ("do" Prep Simp) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+# object of an infinitive ...
+# iad a glacadh; iad fhéin a scaoileadh
+MAP (@OBJ_INF) TARGET (Pron Pers) IF 
+	(*1 (Part Inf) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+	#(*1 ("a" Prep Simp) OR ("do" Prep Simp) BARRIER (Noun) OR (Pron Pers) LINK 1 TRANSVN );
+##########################################################################
+# PP DEPENDANTS
+##########################################################################
+# aon amhras ann/pp-advl nach mbeadh na hathruithe seo ...
+# also Abr: i CFL
+# á dhéanamh, tar éis dul
+MAP (@P<) TARGET (Verbal Noun) IF (-1 (Prep Simp) OR (Prep Poss) OR (Prep Cmpd) OR (Det Poss)); 
+MAP (@P<) TARGET (Pron Dem)  IF (-1 (@PP_ADVL));
+MAP (@PC<) TARGET (Pron Idf)  IF (-1 (Prep Cmpd)); #de_bharr ceachtar
+MAP (@P<) TARGET (Pron Idf)  IF (-1 (Prep Simp)); #de_bharr ceachtar
+MAP (@P<) TARGET NOUN-NOT-VN IF (-1 (@PP_ADVL)  OR (@PP_STAT) OR (@PP_HAS)) (NOT -1 (Pron Prep) );
+# Handle Quotes: rangíodh ina ´gcúiseanna teanga'iad
+MAP (@P<) TARGET NOUN-NOT-VN IF (*-1 (Prep Poss) BARRIER (Noun) OR (@P<));
+# Handle pre-mods on np after prep phrase: idir thuas dhá sheamair
+MAP (@P<) TARGET NOUN-NOT-VN IF (*-1 (Prep Simp) BARRIER (Noun) OR (Rel) OR (@P<));
+MAP (@P<) TARGET NOUN-NOT-VN IF (-1 (@PP_NEG));
+MAP (@P<) TARGET NOUN-NOT-VN IF (-1 PRENOM) (-2 (@PP_ADVL)) (NOT -2 (Pron Prep));
+MAP (@P<) TARGET NOUN-NOT-VN IF (-1 PRENOM) (-2 PRENOM) (-3 (@PP_ADVL)) (NOT -3 (Pron Prep));
+#===>
+
+#===>
+##########################################################################
+# NP DEPENDANTS
+##########################################################################
+
+# is ise a thug an  leabhar do Mháire!=scomp
+# Is ionann sin agus a rá
+MAP (@SUBJ) TARGET (Pron Pers) IF (*-1 (Cop) BARRIER (N-OR-REL) LINK NOT *1 (Verb)); # mise, é
+# An fíor é
+# Dá mba mise/s thú=pred ní dhéanfainn/s é/obj
+MAP (@SUBJ) TARGET (Pron Pers) IF (*-1 (@PRED) BARRIER (Noun) OR (Verb) OR (Cop));
+# iadsan atá faoi ionsaí
+# TO BE TESTED
+MAP (@SUBJ) TARGET (Pron Pers) IF (1 (RELPART) OR (Verb Rel));
+
+#small clause: agus é ag caint leis féin
+# but not sé: sé ag caint
+# is there always a conj before ????
+#MAP (@SUBJ_PROG) TARGET NOUN-OR-PRO IF (NOT 0 (Sbj)) (1 ("ag" Prep Simp)) (2 (Verbal Noun));
+# tá sé ag déanamh cáca
+#MAP (@SUBJ_PROG) TARGET NOUN-OR-PRO IF (1 ("ag" Prep Simp)) (2 (Verbal Noun));
+MAP (@SUBJ_ASP) TARGET NOUN-OR-PRO IF (1 ("ag" Prep Simp)) (2 (Verbal Noun));
+
+MAP (@SUBJ) TARGET (Pron Dem) IF (-1 (@PRED) LINK *-1 (Cop)); 
+##########################################################################
+# Is mise=subj Brian=pred (identity sentence)
+MAP (@PRED) TARGET (Noun) IF (*-1 (@SUBJ) BARRIER (@CLB) OR (Part Rel) LINK *-1 (Cop) BARRIER (Verb) OR (Noun)) (NOT *-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@PRED) BARRIER (@CLB));
+# Sin an fear ...
+MAP (@PRED) TARGET (Noun) IF (*-1 (@COP_SUBJ) BARRIER (@CLB) OR (Part Rel)) (NOT *-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@PRED) BARRIER (@CLB));
+# Is an leabhar a thug ...
+MAP (@PRED) TARGET (Noun) IF (*-1 (@COP) BARRIER (@CLB) OR (Part Rel)) (*1 (Rel) BARRIER NOUN-OR-PRO) (NOT *-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@PRED) BARRIER (@CLB));
+MAP (@PRED) TARGET (Pron Pers) IF (*-1 (@COP) BARRIER (@CLB) OR (Part Rel)) (*1 (Rel) BARRIER NOUN-OR-PRO) (NOT *-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@PRED) BARRIER (@CLB));
+# Dá mba mise thú (Is mise thú)
+MAP (@PRED) TARGET (Pron Pers) IF (*-1 (@SUBJ) BARRIER (@CLB) OR (Part Rel) LINK *-1 (Cop) BARRIER (Verb) OR (Noun)) (NOT *-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@PRED) BARRIER (@CLB));
+# Is é Seán
+MAP (@SUBJ) TARGET (Noun) IF (*-1 (@AUG>SUBJ) BARRIER N-OR-REL); 
+#MAP (@SUBJ-OWNRSHP) TARGET (Noun) IF (-1 ("le") LINK -1 (Cop));
+# CLASSIFICATION: INDEFINITE 
+# Is múinteoir=pred é=subj-classificatory/
+# Is deas=pred an lá=subj
+###MAP (@SUBJ_CLASSN) TARGET (Noun) IF (*-1 (@PRED) BARRIER (@CLB)) (NOT *1 (@SUBJ_CLASSN)) (NOT *-1 (@SUBJ_CLASSN));
+MAP (@SUBJ) TARGET (Noun) IF (*-1 (@PRED)  BARRIER (@CLB) OR (Rel)) (NOT *1 (@SUBJ)) (NOT *-1 (@SUBJ));
+MAP (@SUBJ) TARGET (Noun) IF (*-1 (@PP_PRED) BARRIER (@CLB)) (NOT *1 (@SUBJ)) (NOT *-1 (@SUBJ));
+# Is fear Seán, Is deas an leabhar, Is fear maith é
+# not Is leabhar!=pred a thug sé di
+# ní caomhnóir láidir a bhí ...
+# pred must be indef, subj must be def
+MAP (@PRED) TARGET (Noun) IF (-1 (Cop)) (NOT 0 (Prop Noun)) (*1 (Prop Noun) OR (Pron Pers) OR (Adj) BARRIER (Noun) OR (Vb Rel));
+MAP (@PRED) TARGET (Noun) IF (-1 (Cop)) (NOT 0 (Prop Noun)) (*1 (Art) LINK 1 (Noun) BARRIER (Noun) OR (Vb Rel));
+# cailín is ea í
+MAP (@PRED) TARGET (Noun) IF (*1 (Cop) LINK 1 ("ea") BARRIER (Noun));
+#Is deas an lá
+#Ní móide go ndéantar ...
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (-1 (Cop)) ;
+# tá sé fada
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (-1 (Pron Pers) LINK *-1 ("bí") BARRIER (@CLB) OR (Prep)); 
+# tá an bóthar fada
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (-1 (Noun) LINK *-1 ("bí") BARRIER (@CLB) OR (Prep)) (-2 (Art)); 
+# Tá an geata dúnta
+# tá ... ag na Stáit Aontatithe
+MAP (@PRED) TARGET (Verbal Adj) IF (-1 NOUN-NOM OR (Pron Pers) LINK *-1 ("bí") BARRIER (@CLB) OR (Prep)); 
+# Tá an geata sin dúnta
+MAP (@PRED) TARGET (Verbal Adj) IF (*-1 NOUN-NOM OR (Pron Pers) LINK *-1 ("bí") BARRIER (@CLB) OR (Prep)); 
+# a bheith cláruithe
+MAP (@PRED) TARGET (Verbal Adj) IF (-1 (Verbal Noun) LINK *-1 ("bí") BARRIER (@CLB) ); 
+#MAP (@PRED) TARGET (Adj Base) IF (NOT 0 ATTR-ONLY) (-1 NOUN-NOM OR (Pron Pers) LINK *-1 ("bí") BARRIER (@CLB) OR (Noun)); 
+# Bhíomar tinn inné
+##MAP (@PRED) TARGET (Adj Base) IF (NOT 0 ADJ-ATTR) (-1 ("bí") BARRIER (@CLB)); 
+# may need base see previous ????
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (-1 ("bí") BARRIER (@CLB)); 
+# it is predicative if the noun is definitite and the verb is "bí"
+# a bhfuil a mhac tinn 
+# NOTE is + Adj Com = @N<
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (NOT -1 (Part Sup)) (*-1 ("bí") BARRIER (Rel) OR (@CLB)) (*-1 (Noun) LINK -1 (Art Def) OR (Det)); 
+# Bhí louis sásta
+MAP (@PRED) TARGET (Adj) IF (NOT 0 ADJ-ATTR) (NOT -1 (Part Sup)) (*-1 ("bí") BARRIER (Rel) OR (@CLB)) (*-1 (Prop Noun) BARRIER (Verb)); 
+# mar atá réamhráite
+MAP (@PRED) TARGET (Verbal Adj) IF (-1 ("bí") BARRIER (@CLB)); 
+# inné etc which have Adj tag
+MAP (@ADVL) TARGET TIME; 
+# uair éigin
+MAP (@ADVL) TARGET TIME-PERIOD IF (1 ("éigin")); 
+# an lá sin/seo
+MAP (@ADVL) TARGET TIME-PERIOD IF (1 (Det Dem)); 
+# an lá a cuireadh ...
+MAP (@ADVL) TARGET TIME-PERIOD IF (1 (Part Rel)); 
+# bliain ó shin
+MAP (@ADVL) TARGET TIME-PERIOD IF (1 ("ó")) (2 ("sin")); 
+# aon uair = anytime
+#MAP (@ADVL) TARGET TIME-PERIOD IF (-1 ("aon")) (NOT 1 ("amháin")); 
+MAP (@ADVL) TARGET TIME-PERIOD IF (-1 ("aon")) ; 
+# inar luigh slán
+MAP (@ADVL) TARGET (Adj Base) IF (-1 (Verb)) ; 
+# bíonn gais ghlasa
+# Sin lá deas
+# not Is airde=comparative sliabh ná cnoc
+# not Is deas an lá
+# not chomh=Its deas
+# not Tá sé déanta
+# not Tá [an|a] mac tinn/Pred
+MAP (@N<) TARGET ADJ-ATTR IF 
+	(NOT 0 (Comp)) 
+	(NOT -1 (Part Ad) OR (Cop) OR (Its) OR (Pron)) ;
+#	(*-1 (Noun) BARRIER ANY-NOT-ADJ LINK NOT -1 (Art Def));
+######################################################################
+# VERB DEPENDANTS
+######################################################################
+
+MAP (@SUBJ) TARGET (Pron Pers Sbj) IF (-1 (Verb)) (NOT -1 VSYNTH); #TEST
+# ciallaíonn sin do raibh ...
+MAP (@SUBJ) TARGET (Pron Dem) IF (-1 (Verb)) (NOT -1 VSYNTH); #
+#GENERALISE XXXXXX
+# rinneamar é 
+MAP (@OBJ) TARGET (Pron Pers) IF (-1 VSYNTH); #
+# ná déan seo agus ná déan siúd
+MAP (@OBJ) TARGET (Pron Dem) IF (-1 VSYNTH); #
+#a d´ionsaigh iad
+MAP (@OBJ) TARGET OBJ-PRON IF (-1 (@FMV_REL)); #
+# rinne sé é 
+MAP (@OBJ) TARGET (Pron Pers) IF (*-1 (VT) OR (VTI)) (-1 (@SUBJ));
+#generalise it: scrúdóidh an cigire sin é
+MAP (@OBJ) TARGET (Pron Pers) IF (*-1 (VT) OR (VTI)) (*-1 (@SUBJ) BARRIER (Verb) OR (@CLB));
+# tóg go bog é
+MAP (@OBJ) TARGET (Pron Pers) IF (*-1 (VT @FMV_SUBJ) OR (VTI @FMV_SUBJ));
+# it is ind obj if it is preceded by prep which is preceded by VD (ditrans.)
+###MAP (@OBJ_I) TARGET (Noun Com) IF (-1 (Prep Simp) LINK *-1 (VD)) ;
+###MAP (@OBJ_I) TARGET (Noun Dat) IF (-1 (Prep Simp) LINK *-1 (VD)) ;
+###MAP (@OBJ_I) TARGET (Noun Com) IF (-1 (Prep Simp) LINK *1 (VD) LINK -1 (Part Rel)) ;
+###MAP (@OBJ_I) TARGET (Noun Dat) IF (-1 (Prep Simp) LINK *1 (VD) LINK -1 (Part Rel)) ;
+MAP (@P<) TARGET (Noun Com) IF (-1 (Prep Simp) LINK *-1 (VD)) ;
+MAP (@P<) TARGET (Noun Dat) IF (-1 (Prep Simp) LINK *-1 (VD)) ;
+MAP (@P<) TARGET (Noun Com) IF (-1 (Prep Simp) LINK *1 (VD) LINK -1 (Part Rel)) ;
+MAP (@P<) TARGET (Noun Dat) IF (-1 (Prep Simp) LINK *1 (VD) LINK -1 (Part Rel)) ;
+
+######################################################################
+# bhí louis sásta
+# bíonn na bláthanna bán
+MAP (@SUBJ) TARGET NOUN-NOM IF (*-1 (@FMV) BARRIER NOUN-OR-PRO);
+MAP (@SUBJ) TARGET (Item) IF (*-1 (@FMV) BARRIER NOUN-OR-PRO);
+# ... nuair a bhí tuirse air ...
+#!MAP (@SUBJ) TARGET NOUN-NOM IF (-1 (@FMV_REL));
+##MAP (@SUBJ) TARGET NOUN-NOM IF (-1 (@FMV_REL>SUBJ) BARRIER (@CLB));
+# an fear a chonaic an bhean
+# bean could be subj or obj ...
+# not subj_or_obj if verb is synthetic (i.e. includes subject)
+# not subj_or_obj if verb is intransitive (i.e. has no object)
+# not subj_or_obj if verb is preceded byy an adverbial only (i.e. no subj or obj)
+MAP (@SUBJ_OR_OBJ) TARGET NOUN-NOM IF 
+	(*-1 (Part Vb Rel Direct)  BARRIER NOUN-OR-PRO LINK *-1 NOUN-OR-PRO) 
+	(NOT *-1 ("bí") BARRIER (Rel)) 
+	(NOT *-1 VSYNTH BARRIER (Rel)) 
+	(NOT *-1 (VI)  BARRIER (Rel));
+# cé nár ith an dinnéar?
+MAP (@SUBJ_OR_OBJ) TARGET NOUN-NOM IF (*-1 ("nár")  BARRIER NOUN-OR-PRO);
+MAP (@SUBJ) TARGET NOUN-NOM IF (-1 PRENOM) (-2 (@FMV_REL) BARRIER (@CLB));
+MAP (@SUBJ) TARGET NOUN-NOM IF (*-1 (@FMV_REL)  BARRIER (@CLB) OR SUBJECT OR NOUN-NOM) (NOT *1 SUBJECT BARRIER (@CLB));
+# iad a  bhfuil (T)/Item ina ndiaidh ...
+MAP (@SUBJ) TARGET (Item) IF (*-1 (@FMV_REL)  BARRIER (@CLB) OR SUBJECT OR NOUN-NOM) (NOT *1 SUBJECT BARRIER (@CLB));
+# this is (probably) the subj if there is a rel. verb to the right 
+# with subj to its left and there is no other subj in the clause
+MAP (@SUBJ) TARGET NOUN-NOM IF (*1 (@FMV_REL)  BARRIER (@CLB) OR SUBJECT) (NOT *-1 SUBJECT BARRIER (@CLB));
+# sin a bhfuil ann
+MAP (@SUBJ) TARGET (Pron Dem) IF (*1 (@FMV_REL)  BARRIER (@CLB) OR SUBJECT) (NOT *-1 SUBJECT BARRIER (@CLB));
+
+# NOT ó réim an Ombudsman
+MAP (@SUBJ) TARGET NOUN-NOM IF (*-1 (@FMV_REL) BARRIER SUBJECT OR (Prep Simp));
+
+##############################################
+# BÍ AUX
+# bhí Seán ag fáil airgead
+# bhí go_leor eile ag fáil airgead
+#MAP (@OBJ_ASP) TARGET NOUN-NOM IF (*-1 (@FAUX) BARRIER NOUN-OR-PRO) (*1 (Verbal Noun) BARRIER NOUN-OR-PRO);
+MAP (@SUBJ) TARGET NOUN-NOM IF (*-1 (@FAUX) BARRIER NOUN-OR-PRO) (*1 (Verbal Noun) BARRIER NOUN-OR-PRO);
+MAP (@SUBJ) TARGET NOUN-NOM IF (*-1 (@FAUX) BARRIER NOUN-OR-PRO);
+MAP (@SUBJ) TARGET NOUN-NOM IF (-1 (@FAUX_REL) BARRIER (@CLB));
+MAP (@SUBJ) TARGET NOUN-NOM IF (-1 PRENOM) (-2 (@FAUX_REL) BARRIER (@CLB));
+# chonaic máire an fear/rel_subj a bhí ag iascaireacht
+MAP (@SUBJ_REL) TARGET NOUN-NOM IF (*1 (@FAUX_REL) BARRIER (@CLB) OR (Verb) OR SUBJECT);
+# subject before rel verb if intrans i.e. prep following verb => no dir. obj.
+MAP (@SUBJ_REL) TARGET NOUN-NOM IF (NOT *-1 SUBJECT BARRIER (@CLB)) (NOT *1 SUBJECT BARRIER (@CLB)) (*1 (Part Rel) LINK 1 (VI) OR (VTI) LINK 1 (Prep));
+# cúig caibidil atá i CFL ...
+MAP (@SUBJ) TARGET NOUN-NOM IF (NOT *-1 SUBJECT) (NOT *1 SUBJECT) (*1 (Verb Rel) LINK 1 (Prep));
+
+# an fear a bhfuil a mhac ag imeacht
+# => fear = subj if "a" Det Poss follows verb
+# exclude Cop Pron Dem as possible SUBJ as already tagged COP_SUBJ
+MAP (@SUBJ) TARGET NOUN-OR-PRO IF (NOT 0 (Cop)) (*1 (Part Vb Rel) LINK 1 (Verb) LINK 1 (Det Poss));
+
+######################################################################
+# test on relatives
+# dúirt sé gur múinteoir!=obj-d é
+# D'inis sí an scéal 
+# Cheannaigh sí leabhair áit!=obj-d a bhí siopa ann
+# not Suíonn Timi agus Ronna
+MAP (@OBJ) TARGET NOUN-NOM  IF 
+ (*-1 TRANSV BARRIER (Verb)) 
+ (*-1 SUBJECT BARRIER (Verb) OR (Prep) OR (Cop)) 
+ (NOT *-1 (@OBJ) BARRIER (Verb)) 
+ (NOT *-1 (Coord) BARRIER (Noun));
+# NOTE: d'fhoilsigh sé féin agus Eoin => do not allow part of conjoint to be an 
+# obj if the first part is not an obj
+# do rule for conjoints ...
+#MAP (@OBJ) TARGET NOUN-NOM IF (*-1 SUBJECT BARRIER (Verb) OR (Prep) OR (Cop)) (NOT *-1 (@OBJ))(*-1 TRANSV) (NOT *-1 (Coord) BARRIER NOUN-NOM); 
+MAP (@OBJ) TARGET NOUN-NOM  IF 
+ (*-1 TRANSV BARRIER (Verb)) 
+ (*-1 SUBJECT BARRIER (Verb) OR (Prep) OR (Cop)) 
+ (*-1 (@OBJ) LINK *1 (Coord) BARRIER NOUN-NOM OR (Punct));
+
+MAP (@OBJ) TARGET NOUN-NOM IF 
+ (*-1 SUBJECT BARRIER (Verb) OR (Prep) OR (Cop)) 
+ (NOT *-1 (@OBJ))
+ (*1 TRANSV) ; 
+# cloigeann capaill a fheictear in armas Marsh ...
+MAP (@OBJ) TARGET NOUN-NOM IF (*1 VERB-REL-O LINK *1 SUBJECT BARRIER (@CLB));
+# an lá a cuireadh Butt ...
+MAP (@OBJ) TARGET NOUN-NOM IF (*1 VERB-SUBJ-O BARRIER (@CLB)) (NOT *-1 (@OBJ)) (NOT *1 (@OBJ));
+# an brú/obj a chuir an GPA/subj orthu
+MAP (@OBJ) TARGET NOUN-NOM IF (*1 (VT @FMV_REL) OR (VTI @FMV_REL) OR (VD @FMV_REL) BARRIER (Noun)) ; 
+# an teach a raibh sé ina chónaí ann=resumptive pron=obj
+MAP (@OBJ) TARGET NOUN-NOM IF (*1 (@FAUX_REL) BARRIER (Noun) LINK *1 (Prep Pron)) ; 
+#here
+
+MAP (@N<) TARGET (Det Dem) IF (*-1 (Noun) BARRIER (Pron));
+# iad sin
+MAP (@PN<) TARGET (Det Dem) IF (*-1 (Pron) BARRIER (Noun));
+# na Ballstáit uile
+#error here MAP (@N<) TARGET (Det Qty) (0 ("uile")) IF (*-1 (Noun) BARRIER (Pron));
+MAP (@N<) TARGET ("uile" Det Qty) IF (*-1 (Noun) BARRIER (Pron));
+# iad uile
+MAP (@PN<) TARGET ("uile" Det Qty) IF (*-1 (Pron) BARRIER (Noun));
+MAP (@>N) TARGET (Art) (NOT 0 (Cop)); # cén = cop pron art;
+MAP (@>N) TARGET (Poss);
+MAP (@>N) TARGET (Det);
+MAP (@>N) TARGET (Item) IF (1 (Noun));
+# list items will be NPs
+# (8) Déanfaidh Cígire ...
+MAP (@NP) TARGET (Item) IF (NOT *1 (Noun) BARRIER (Punct) OR (Verb)); 
+MAP (@>N) TARGET (Num Dig PC) IF (1 ("de"));
+MAP (@N<) TARGET (Num Dig) IF (-1 ("Euro") OR ("euro"));
+MAP (@P<) TARGET (Num Dig) IF (-1 ("i")) (NOT *1 (Noun) BARRIER (@CLB) OR (Rel));
+MAP (@>N) TARGET (Nm);
+MAP (@>N) TARGET (Num) IF (1 (Noun));
+MAP (@N<) TARGET (Num) IF (-1 (Noun));
+MAP (@NP) TARGET (Num) IF (NOT -1 (Noun)) (NOT 1 (Noun));
+# chun a trí, tar_éis a dó
+MAP (@P<) TARGET (Num) IF (-1 (Nm)) (-2 (Prep));
+MAP (@>N) TARGET NUM-PERS IF (1 NOUN-NOT-VN); #do bheirt iníon
+MAP (@>N) TARGET (Part Pat);
+MAP (@>N) TARGET (Part Voc);
+# á dhéanamh, an déanamh, tar éis dul, do mo chabhrú
+# tarlú
+# le mím agus gluaiseacht!=INF bailé=Gen 
+MAP (@INF) TARGET (Verbal Noun) IF (NOT -1 (Prep Simp) OR (Prep Poss) OR (Art) OR (Prep Cmpd) OR (Det Poss))(-1 (Pron) OR (Noun) OR (Verb)) (NOT 1 (Noun Gen)); 
+MAP (@PN<) TARGET (Pron Ref) IF (-1 (Pron)); #é féin
+MAP (@N<) TARGET (Pron Ref) IF (-1 (Noun)); #an tiarna féin
+MAP (@N<) TARGET (Adj) IF (-1 (@CC)) (-2 (Adj)); # glas agus bán
+MAP (@PN<) TARGET (Pron) IF (-1 (@CC)) (-2 (Pron)); # dúirt sé agus é ag caint
+
+MAP (@ADVL) TARGET (Adj) IF ( -1C (Part Ad));
+# Bí go deas
+MAP (@>ADJ) TARGET (Part Ad);
+MAP (@>ADJ) TARGET (Part Sup);
+MAP (@>ADJ) TARGET (Adv Its);
+MAP (@>ADJ) TARGET (Deg);
+
+# tag all the comp. adjs which are use PRED as ADVL like chomh maith
+# níos déanta
+# rinne sé níos mó/fearr
+MAP (@ADVL) TARGET (Adj) IF (-1 (Part Comp)) (NOT 1 (Noun));
+# rinne sé níos mó/lú airgead/airgid
+MAP (@>N) TARGET (Adj) IF (-1 (Part Comp)) (1 (Noun));
+
+# tag all superlatives as noun modifiers @N<
+# daoine eile is cuí/ ba chuí
+# is déanta; an ceann is fearr, fadhbanna is mó
+MAP (@N<) TARGET (Adj) IF (-1 (Part Sup));
+MAP (@ADVL) TARGET (Adv) IF (NOT 0 (Its));
+# chomh/Its minic/A sin
+MAP (@ADVL) TARGET (Adj) IF (-1 (Adv Its)) ;
+# chomh/Its minic/A sin=le_sin=>ADVL
+MAP (@ADVL) TARGET (Pron Dem) IF (-1C (Adj)) ;
+#MAP (@ADVL) TARGET (Adj) IF (-1 (Adv Its)) (NOT 1 ("le"));
+# chomh maith le
+#MAP (@ADVL) TARGET (Adj) IF (-1 (Adv Its)) (1 ("le"));
+#MAP (@ADJP) TARGET (Adj) IF (-1 (Adv Its)) (1 ("le"));
+
+# in armas Marsh
+MAP (@N<) TARGET (Prop Noun) (-1 (Noun)) (-2 (Prep Simp)); # 
+MAP (@N<) TARGET (Prop Noun) (-2 (Noun)) (-1 (Art Def)) (-3 (Prep Simp)); # 
+MAP (@NP) TARGET (Noun) (NOT 0 (Verb)); # Tá's = tá/v + fios/n
+#Liam P. Ó Riain
+MAP (@N<) TARGET (Abr) IF (-1 (Prop));
+# used for Adj ending in a vowel which only have Adj Base tags and 
+# therefore did not get tagged as attributive adjectives
+MAP (@N<) TARGET (Adj Base) IF (-1 (Noun) OR (Adj));
+# used for Verbal Adj used attributively
+# ina dhéanmhas cosanta 
+MAP (@N<) TARGET (Verbal Adj) IF (-1 (Noun) OR (Adj));
+MAP (@>N) TARGET (Abr) IF (1 (Prop));
+# in Óglaigh an IRA
+MAP (@N<) TARGET (Abr) IF (-2 (Noun)) (-1 (Art Def)) (-3 (Prep Simp));
+MAP (@N<) TARGET (Abr) IF (-1 (Noun)) (-2 (Prep Simp));
+MAP (@NP) TARGET (Abr) IF (NOT -1 (Prop)) (NOT 1 (Prop));
+# maidir_le ginmhilleadh
+MAP (@ADVL) TARGET (Prep CmpNoGen);
+MAP (@PC<) TARGET (Noun Com) IF (-1 (Prep CmpNoGen));
+MAP (@NP) TARGET (Pron Pers); # Iad/NP uile faoi shuan ...
+MAP (@NP) TARGET (Pron Idf); # cibé acu
+
+MAP (@COM) TARGET ("," Punct Int);
+#=====#
+  END #
+#=====#
+
+

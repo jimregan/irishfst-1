@@ -1,0 +1,55 @@
+"<Chuaigh>"
+	"téigh" Verb VTI PastInd Len @FMV
+"<siad>"
+	"siad" Pron Pers 3P Pl Sbj @SUBJ
+"<zzz>"
+	"zzz" Guess Abr @OBJ
+"<AG>"
+	"ag" Prep Simp @PP_ADVL
+"<Ar>"
+	"ar" Noun Masc Com Sg @P<
+"<123>"
+	"123" Num Dig @N<
+"<do>"
+	"do" Prep Simp
+"<amach>"
+	"amach" Adv Dir @ADVL
+"<.>"
+	"." Punct Fin
+
+"<Chuir>"
+	"cuir" Verb VTI PastInd Len @FMV
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ
+"<leabhar>"
+	"leabhar" Adj Fem Com Sg Len @N<
+"<ar>"
+	"ar" Prep Simp @PP_ADVL
+"<an>"
+	"an" Art Sg Def @>N
+"<mbord>"
+	"bord" Noun Masc Com Sg Ecl @P<
+"<.>"
+	"." Punct Fin
+
+"<Thug>"
+	"tabhair" Verb VD PastInd Len @FMV
+"<an>"
+	"an" Art Sg Def @>N
+"<cailín>"
+	"cailín" Noun Masc Com Sg DefArt @SUBJ
+"<leabhar>"
+	"leabhar" Adj Masc Com Sg @N<
+	"leabhar" Adj Masc Com Sg Len @N<
+"<dá>"
+	"de" Prep Poss 3P Sg Fem @PP_ADVL
+	"de" Prep Poss 3P Sg Masc @PP_ADVL
+	"de" Prep Poss 3P Pl @PP_ADVL
+	"do" Prep Poss 3P Sg Fem @PP_ADVL
+	"do" Prep Poss 3P Sg Masc @PP_ADVL
+	"do" Prep Poss 3P Pl @PP_ADVL
+"<cara>"
+	"cara" Noun Masc Com Sg @P<
+"<.>"
+	"." Punct Fin
+

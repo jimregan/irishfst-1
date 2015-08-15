@@ -1,0 +1,1224 @@
+"<CÁ>"
+	"cá" Adv Q @ADVL 
+"<BHFUIL>"
+	"bí" Verb VI PresInd Dep Q Ecl @FMV 
+"<SÉAMUS>"
+	"séamus" Guess Noun Masc Com Sg @SUBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @NP 
+"<sa>"
+	"i" Prep Art Sg @PP_ADVL 
+"<ghairdín>"
+	"gairdín" Noun Masc Com Sg Len @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<an>"
+	"an" Art Sg Def @>N 
+"<aimsir>"
+	"aimsir" Noun Fem Com Sg DefArt @SUBJ 
+	"aimsear" Noun Fem Com Sg DefArt @SUBJ 
+"<go>"
+	"go" Part Ad @>ADJ 
+"<breá>"
+	"breá" Adj Base @PRED 
+"<inniu>"
+	"inniu" Adv Temp @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<an-te>"
+	"te" Adj Base GuessPref @PRED 
+"<.>"
+	"." Punct Fin 
+
+"<Ach>"
+	"ach" Conj Subord @CLB 
+"<bhí>"
+	"bí" Verb VI PastInd Len @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<an-fhuar>"
+	"fuar" Adj Base GuessPref @PRED 
+"<inné>"
+	"inné" Adj Base @ADVL 
+	"inné" Adj Base Len @ADVL 
+"<!>"
+	"!" Punct Fin 
+
+"<Ní>"
+	"ní" Part Vb Neg @>V 
+"<raibh>"
+	"bí" Verb VI PastInd Dep Neg Len @FAUX 
+"<siad>"
+	"siad" Pron Pers 3P Pl Sbj @SUBJ 
+"<in>"
+	"sin" Pron Dem 
+"<ann>"
+	"ann" Adv Loc @ADVL 
+"<súgradh>"
+	"súgradh" Verbal Noun NStem @NP 
+"<taobh>"
+	"taobh" Noun Masc Com Sg @NP 
+"<amuigh>"
+	"amuigh" Adv Loc @ADVL 
+"<ansin>"
+	"ansin" Adv Loc @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Is>"
+	"is" Cop Pres @COP 
+"<breá>"
+	"breá" Adj Base @PRED 
+"<le>"
+	"le" Prep Simp @PP_ADVL 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @P< 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<bheith>"
+	"bheith" Verbal Noun VI Len @INF 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<súgradh>"
+	"súgradh" Verbal Noun NStem @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Bíonn>"
+	"bí" Verb VI PresImp @FAUX 
+"<siad>"
+	"siad" Pron Pers 3P Pl Sbj @SUBJ 
+"<i>"
+	"i" Prep Simp @PP_ADVL 
+"<gcónaí>"
+	"cónaí" Noun Masc Com Sg Ecl @P< 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<súgradh>"
+	"súgradh" Verbal Noun NStem @P< 
+"<le>"
+	"le" Prep Simp @PP_ADVL 
+"<chéile>"
+	"céile" Noun Masc Com Sg Len @P< 
+"<sa>"
+	"i" Prep Art Sg @PP_ADVL 
+"<ghairdín>"
+	"gairdín" Noun Masc Com Sg Len @P< 
+"<os>"
+	"os" Prep Simp @PP_ADVL 
+"<comhair>"
+	"comhair" Subst Noun Sg @P< 
+"<an>"
+	"an" Art Sg Def @>N 
+"<tí>"
+	"teach" Noun Masc Gen Sg @N< 
+	"tí" Noun Masc Gen Sg @N< 
+"<mhóir>"
+	"mór" Adj Masc Gen Sg Len @N< 
+"<.>"
+	"." Punct Fin 
+
+"<Is>"
+	"is" Cop Pres @COP 
+"<buachaill>"
+	"buachaill" Noun Masc Com Sg @PRED 
+"<beag>"
+	"beag" Adj Masc Com Sg @N< 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @NP 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @NP 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+	"sé" Num Card @NP 
+	"sé" Num Card Ecl @NP 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+	"sé" Num Card @>N 
+	"sé" Num Card Ecl @>N 
+"<bliana>"
+	"bliain" Noun Fem Com Pl @NP 
+"<d>"
+	"d" Item @>N 
+"<aois>"
+	"aois" Noun Fem Com Sg @NP 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<an>"
+	"an" Art Sg Def @>N 
+"<cailín>"
+	"cailín" Noun Masc Com Sg DefArt @SUBJ 
+"<óg>"
+	"óg" Adj Masc Com Sg @N< 
+	"óg" Adj Masc Com Sg Len @N< 
+"<ina>"
+	"i" Prep Poss 3P Sg Fem @PP_STAT 
+	"i" Prep Poss 3P Sg Masc @PP_STAT 
+	"i" Prep Poss 3P Pl @PP_STAT 
+"<dheirfiúir>"
+	"deirfiúir" Guess Noun Masc Com Sg Len @P< 
+"<dó>"
+	"do" Pron Prep 3P Sg Masc @PP_ADVL 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<cúig>"
+	"cúig" Num Card @>N 
+"<bliana>"
+	"bliain" Noun Fem Com Pl @NP 
+"<d>"
+	"d" Item @>N 
+"<aois>"
+	"aois" Noun Fem Com Sg @NP 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<madra>"
+	"madra" Noun Masc Com Sg @SUBJ 
+"<beag>"
+	"beag" Adj Masc Com Sg @N< 
+"<ag>"
+	"ag" Prep Simp @PP_HAS 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<an>"
+	"an" Art Sg Def @>N 
+"<madra>"
+	"madra" Noun Masc Com Sg DefArt @SUBJ 
+"<sa>"
+	"i" Prep Art Sg @PP_ADVL 
+"<ghairdín>"
+	"gairdín" Noun Masc Com Sg Len @P< 
+"<anois>"
+	"anois" Adv Gn @ADVL 
+"<freisin>"
+	"freisin" Adv Gn @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Is>"
+	"is" Cop Pres @COP 
+"<maith>"
+	"maith" Adj Base @PRED 
+"<leis>"
+	"le" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<madra>"
+	"madra" Noun Masc Com Sg DefArt @SUBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<bheith>"
+	"bheith" Verbal Noun VI Len @INF 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<súgradh>"
+	"súgradh" Verbal Noun NStem @P< 
+"<leis>"
+	"le" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<mbeirt>"
+	"beirt" Noun Fem Com Sg Ecl @P< 
+"<páiste>"
+	"páiste" Noun Masc Gen Sg @N< 
+	"páiste" Noun Masc Com Sg @NP 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<an>"
+	"an" Art Sg Def @>N 
+"<madra>"
+	"madra" Noun Masc Com Sg DefArt @SUBJ 
+"<an-shásta>"
+	"an-shásta" Guess Verbal Adj @PRED 
+"<anois>"
+	"anois" Adv Gn @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<An>"
+	"an" Part Vb Q @>V 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Q Ecl @FMV 
+"<madra>"
+	"madra" Noun Masc Com Sg @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_HAS 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @P< 
+"<freisin>"
+	"freisin" Adv Gn @ADVL 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Níl>"
+	"bí" Verb VI PresInd Neg @FMV 
+"<madra>"
+	"madra" Noun Masc Com Sg @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_HAS 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @P< 
+"<tá>"
+	"bí" Verb VI PresInd @FMV 
+"<cat>"
+	"cat" Noun Masc Com Sg @SUBJ 
+"<aici>"
+	"ag" Pron Prep 3P Sg Fem @PP_HAS 
+"<.>"
+	"." Punct Fin 
+
+"<Ach>"
+	"ach" Conj Subord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<an>"
+	"an" Art Sg Def @>N 
+"<cat>"
+	"cat" Noun Masc Com Sg DefArt @SUBJ 
+"<sa>"
+	"i" Prep Art Sg @PP_ADVL 
+"<teach>"
+	"teach" Noun Masc Com Sg @P< 
+	"teach" Noun Masc Com Sg DefArt @P< 
+	"teagh" Noun Masc Com Sg @P< 
+	"teagh" Noun Masc Com Sg DefArt @P< 
+"<ina>"
+	"i" Prep Poss 3P Sg Fem @PP_STAT 
+	"i" Prep Poss 3P Sg Masc @PP_STAT 
+	"i" Prep Poss 3P Pl @PP_STAT 
+"<chodladh>"
+	"codladh" Verbal Noun VTI Len @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<a>"
+	"a" Det Poss 3P Sg Fem @>N 
+"<máthair>"
+	"máthair" Noun Fem Com Sg @SUBJ 
+"<istigh>"
+	"istigh" Adv Loc @ADVL 
+"<sa>"
+	"i" Prep Art Sg @PP_ADVL 
+"<teach>"
+	"teach" Noun Masc Com Sg @P< 
+	"teach" Noun Masc Com Sg DefArt @P< 
+	"teagh" Noun Masc Com Sg @P< 
+	"teagh" Noun Masc Com Sg DefArt @P< 
+"<leis>"
+	"le" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<gcat>"
+	"cat" Noun Masc Com Sg Ecl @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Féachann>"
+	"féach" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<tríd>"
+	"trí" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<bhfuinneog>"
+	"fuinneog" Noun Fem Com Sg Ecl @P< 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<feiceann>"
+	"feic" Verb VTI PresInd @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+	"sé" Num Card @>N 
+	"sé" Num Card Ecl @>N 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @NP 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ_ASP 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<súgradh>"
+	"súgradh" Verbal Noun NStem @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Ritheann>"
+	"rith" Verb VTI PresInd @FMV 
+	"rith" Verb VTI PresInd Len @FMV 
+	"rith" Verb VTI PresInd Ecl @FMV 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<go>"
+	"go" Part Ad @>ADJ 
+"<tapa>"
+	"tapa" Adj Base @ADVL 
+"<chuig>"
+	"chuig" Prep Simp @PP_ADVL 
+"<seanchrann>"
+	"crann" Noun Masc Com Sg GuessPref @P< 
+"<mór>"
+	"mór" Adj Masc Com Sg @N< 
+"<áit>"
+	"áit" Noun Fem Com Sg @OBJ 
+"<a>"
+	"a" Part Vb Rel Direct @>V 
+"<théann>"
+	"téigh" Verb VTI PresInd Len @FMV_REL 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<i>"
+	"i" Prep Simp @PP_ADVL 
+"<bhfolach>"
+	"folach" Noun Masc Com Sg Ecl @P< 
+"<ar>"
+	"ar" Prep Simp @PP_ADVL 
+"<Mháire>"
+	"Máire" Prop Noun Fem Com Sg Len @P< 
+"<.>"
+	"." Punct Fin 
+
+"<An>"
+	"an" Part Vb Q @>V 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Q Ecl @FMV 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<fhios>"
+	"fios" Noun Masc Com Sg Len @SUBJ 
+"<agat>"
+	"ag" Pron Prep 2P Sg @PP_HAS 
+"<cén>"
+	"cé" Cop Q Art Sg @COP_WH 
+	"cé" Det Q Art Sg @>N 
+"<fáth>"
+	"fáth" Noun Masc Com Sg @PRED 
+	"fáth" Noun Masc Com Sg DefArt @PRED 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ 
+"<ina>"
+	"i" Prep Poss 3P Sg Fem @PP_STAT 
+	"i" Prep Poss 3P Sg Masc @PP_STAT 
+	"i" Prep Poss 3P Pl @PP_STAT 
+"<suí>"
+	"suí" Verbal Noun VTI @P< 
+	"suí" Verbal Noun VTI Ecl @P< 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FMV 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<lámha>"
+	"lámh" Noun Fem Com Pl Len @SUBJ 
+"<os>"
+	"os" Prep Simp @PP_ADVL 
+"<comhair>"
+	"comhair" Subst Noun Sg @P< 
+"<a>"
+	"a" Det Poss 3P Sg Fem @>N 
+"<súl>"
+	"súil" Noun Fem Gen Weak Pl @N< 
+"<aici>"
+	"ag" Pron Prep 3P Sg Fem @PP_ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Ní>"
+	"is" Cop Pres Neg @COP 
+"<féidir>"
+	"féidir" Subst Noun Sg @PRED 
+"<léi>"
+	"le" Pron Prep 3P Sg Fem @PP_ADVL 
+"<aon>"
+	"aon" Det Qty Idf @>N 
+"<rud>"
+	"rud" Noun Masc Com Sg Len @OBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<fheiceáil>"
+	"feiceáil" Verbal Noun VTI Len @INF 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<comhaireamh>"
+	"comhaireamh" Verbal Noun VTI @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Cén>"
+	"cé" Cop Q Art Sg @COP_WH 
+"<fáth>"
+	"fáth" Noun Masc Com Sg @PRED 
+	"fáth" Noun Masc Com Sg DefArt @PRED 
+"<go>"
+	"go" Part Vb Cmpl @CLB 
+"<ndéanann>"
+	"déan" Verb VT PresInd Ecl @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @OBJ 
+"<sin>"
+	"sin" Pron Dem 
+	"sin" Cop Pro Dem @COP_SUBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Agus>"
+	"agus" Conj Coord @CC 
+"<cad>"
+	"cad" Pron Q @SUBJ_OR_OBJ 
+"<atá>"
+	"bí" Verb VI PresInd Rel @FAUX_REL 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ_ASP 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<déanamh>"
+	"déanamh" Verbal Noun VTI @P< 
+"<in>"
+	"i" Prep Simp @PP_ADVL 
+"<aice>"
+	"aice" Noun Fem Com Sg @P< 
+"<an>"
+	"is" Cop Pres Dep Q @CLB 
+	"is" Cop Pres Q @COP_WH 
+	"an" Art Sg Def 
+"<chrainn>"
+	"crann" Noun Masc Gen Sg DefArt @PRED 
+	"crann" Noun Masc Gen Sg Len @PRED 
+	"crann" Noun Masc Com Pl Len @PRED 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Is>"
+	"is" Cop Pres @COP 
+"<cluiche>"
+	"cluiche" Noun Masc Com Sg @PRED 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @SUBJ 
+"<.>"
+	"." Punct Fin 
+
+"<Nuair>"
+	"nuair" Conj Subord @CLB 
+"<a>"
+	"a" Part Vb Rel Indirect @>V 
+	"a" Part Vb Rel Indirect Pro @>V 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Ecl @FAUX_REL 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ 
+"<críochnaithe>"
+	"críochnaithe" Verbal Adj @PRED 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<comhaireamh>"
+	"comhaireamh" Verbal Noun VTI @P< 
+"<féachann>"
+	"féach" Verb VTI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<timpeall>"
+	"timpeall" Noun Masc Com Sg @OBJ 
+	"timpeall" Adv Dir @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<lorg>"
+	"lorg" Verbal Noun VTI @P< 
+"<Shéamuis>"
+	"Shéamuis" Guess Prop Noun Masc Com Sg @N< 
+"<cá>"
+	"cá" Adv Q @ADVL 
+"<ndeachaigh>"
+	"téigh" Verb VTI PastInd Dep Q Ecl 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<An>"
+	"an" Part Vb Q @>V 
+"<bhfaca>"
+	"feic" Verb VTI PastInd Dep Q Ecl @FMV 
+"<tú>"
+	"tú" Pron Pers 2P Sg @SUBJ 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @OBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Níl>"
+	"bí" Verb VI PresInd Neg @FMV 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<fhios>"
+	"fios" Noun Masc Com Sg Len @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_HAS 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @P< 
+"<cá>"
+	"cá" Adv Q @ADVL 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Q Ecl @FMV 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<.>"
+	"." Punct Fin 
+
+"<Fiafraíonn>"
+	"fiafraigh" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<den>"
+	"de" Prep Art Sg @PP_ADVL 
+"<madra>"
+	"madra" Noun Masc Com Sg @P< 
+	"madra" Noun Masc Com Sg DefArt @P< 
+"<An>"
+	"an" Part Vb Q @>V 
+"<bhfaca>"
+	"feic" Verb VTI PastInd Dep Q Ecl @FMV 
+"<tú>"
+	"tú" Pron Pers 2P Sg @SUBJ 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @OBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<.>"
+	"." Punct Fin 
+
+"<Ach>"
+	"ach" Conj Subord @CLB 
+	"ach" Prep Simp @PP_NEG 
+"<ar>"
+	"ar" Prep Simp @PP_ADVL 
+"<ndóigh>"
+	"dóigh" Noun Fem Com Sg Ecl @P< 
+"<ní>"
+	"is" Cop Pres Neg @COP 
+"<féidir>"
+	"féidir" Subst Noun Sg @PRED 
+"<leis>"
+	"le" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<madra>"
+	"madra" Noun Masc Com Sg DefArt @P< 
+"<labhairt>"
+	"labhairt" Noun Fem Com Sg @SUBJ 
+	"labhairt" Verbal Noun VTI @SUBJ 
+	"labhairt" Verbal Noun VTI Len @N< 
+	"labhairt" Verbal Noun VTI Ecl @SUBJ 
+"<!>"
+	"!" Punct Fin 
+
+"<Mar>"
+	"mar" Conj Subord @CLB 
+"<sin>"
+	"sin" Pron Dem 
+	"sin" Cop Pro Dem @COP_SUBJ 
+"<ní>"
+	"ní" Part Vb Neg @>V 
+"<fhaigheann>"
+	"faigh" Verb VT PresInd Neg Len @FMV 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @PRED 
+"<freagra>"
+	"freagra" Noun Masc Com Sg @SUBJ 
+"<dá>"
+	"de" Prep Poss 3P Sg Fem @PP_ADVL 
+	"de" Prep Poss 3P Sg Masc @PP_ADVL 
+	"de" Prep Poss 3P Pl @PP_ADVL 
+	"do" Prep Poss 3P Sg Fem @PP_ADVL 
+	"do" Prep Poss 3P Sg Masc @PP_ADVL 
+	"do" Prep Poss 3P Pl @PP_ADVL 
+"<ceist>"
+	"ceist" Noun Fem Com Sg @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Ní>"
+	"ní" Part Vb Neg @>V 
+"<fhaigheann>"
+	"faigh" Verb VT PresInd Neg Len @FMV 
+"<daoine>"
+	"duine" Noun Masc Com Pl @SUBJ 
+"<freagra>"
+	"freagra" Noun Masc Com Sg @OBJ 
+"<riamh>"
+	"riamh" Adv Gn @ADVL 
+"<nuair>"
+	"nuair" Conj Subord @CLB 
+"<a>"
+	"a" Part Vb Rel Direct @>V 
+"<labhraíonn>"
+	"labhair" Verb VTI PresInd Len @FMV_REL 
+"<siad>"
+	"siad" Pron Pers 3P Pl Sbj @SUBJ 
+"<le>"
+	"le" Prep Simp @PP_ADVL 
+"<madraí>"
+	"madra" Noun Masc Com Pl @P< 
+"<!>"
+	"!" Punct Fin 
+
+"<Féachann>"
+	"féach" Verb VTI PresInd @FMV 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ 
+"<ar>"
+	"ar" Prep Simp @PP_ADVL 
+"<a>"
+	"a" Det Poss 3P Pl @>N 
+"<máthair>"
+	"máthair" Noun Fem Com Sg Ecl @P< 
+"<taobh>"
+	"taobh" Noun Masc Com Sg @NP 
+"<thiar>"
+	"thiar" Adv Dir @ADVL 
+"<den>"
+	"de" Prep Art Sg @PP_ADVL 
+"<fhuinneoig>"
+	"fhuinneoig" Guess Noun Fem Com Sg @P< 
+"<.>"
+	"." Punct Fin 
+
+"<8>"
+	"8" Num Dig @NP 
+"<Tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<a>"
+	"a" Det Poss 3P Sg Fem @>N 
+"<máthair>"
+	"máthair" Noun Fem Com Sg @SUBJ_ASP 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<gáire>"
+	"gáire" Verbal Noun VTI @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Síleann>"
+	"síl" Verb VTI PresInd @FMV 
+	"síl" Verb VTI PresInd Ecl @FMV 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ 
+"<go>"
+	"go" Part Vb Cmpl @CLB 
+"<bhfaca>"
+	"feic" Verb VTI PastInd Dep Ecl @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<cá>"
+	"cá" Adv Q @ADVL 
+"<ndeachaigh>"
+	"téigh" Verb VTI PastInd Dep Q Ecl @FMV 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<Abair>"
+	"abar" Noun Masc Com Pl @OBJ 
+"<liom>"
+	"le" Pron Prep 1P Sg @PP_ADVL 
+"<cá>"
+	"cá" Adv Q @ADVL 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Q Ecl @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<!>"
+	"!" Punct Fin 
+
+"<arsa>"
+	"arsa" Verb PastInd @FMV 
+"<sise>"
+	"sí" Pron Pers 3P Sg Fem Sbj Emph @SUBJ 
+"<dá>"
+	"de" Prep Poss 3P Sg Fem @PP_ADVL 
+	"de" Prep Poss 3P Sg Masc @PP_ADVL 
+	"de" Prep Poss 3P Pl @PP_ADVL 
+	"do" Prep Poss 3P Sg Fem @PP_ADVL 
+	"do" Prep Poss 3P Sg Masc @PP_ADVL 
+	"do" Prep Poss 3P Pl @PP_ADVL 
+"<máthair>"
+	"máthair" Noun Fem Com Sg @P< 
+	"máthair" Noun Fem Com Sg Ecl @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Ní>"
+	"is" Cop Pres Neg @COP 
+"<féidir>"
+	"féidir" Subst Noun Sg @PRED 
+"<liom>"
+	"le" Pron Prep 1P Sg @PP_ADVL 
+"<insint>"
+	"insint" Verbal Noun VTI @SUBJ 
+"<duit>"
+	"do" Pron Prep 2P Sg @PP_ADVL 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<Mháire>"
+	"Máire" Prop Noun Fem Com Sg Len @NP 
+"<!>"
+	"!" Punct Fin 
+
+"<a>"
+	"a" Part Vb Rel Direct @>V 
+"<fhreagraíonn>"
+	"freagair" Verb VTI PresInd Len @FMV_REL 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<.>"
+	"." Punct Fin 
+
+"<Cé>"
+	"cé" Conj Subord @CLB 
+"<gur>"
+	"is" Cop Past Dep @CLB 
+	"is" Cop Pres Dep @CLB 
+	"gur" Conj Subord @CLB 
+"<dócha>"
+	"dócha" Adj Base @PRED 
+	"dócha" Adj Comp @PRED 
+"<go>"
+	"go" Part Vb Cmpl @CLB 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Ecl @FMV 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<fhios>"
+	"fios" Noun Masc Com Sg Len @SUBJ 
+"<aici>"
+	"ag" Pron Prep 3P Sg Fem @PP_HAS 
+"<cá>"
+	"cá" Adv Q @ADVL 
+"<bhfuil>"
+	"bí" Verb VI PresInd Dep Q Ecl @FAUX 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<ní>"
+	"is" Cop Pres Neg @COP 
+"<mian>"
+	"mian" Noun Fem Com Sg @PRED 
+	"mian" Noun Masc Com Sg @PRED 
+"<léi>"
+	"le" Pron Prep 3P Sg Fem @PP_ADVL 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @OBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<insint>"
+	"insint" Verbal Noun VTI Len @INF 
+"<.>"
+	"." Punct Fin 
+
+"<Siúileann>"
+	"siúil" Verb VTI PresInd @FMV 
+	"siúil" Verb VTI PresInd Ecl @FMV 
+"<Máire>"
+	"Máire" Prop Noun Fem Com Sg @SUBJ 
+"<go>"
+	"go" Part Ad @>ADJ 
+"<mall>"
+	"mall" Adj Base @ADVL 
+"<tríd>"
+	"trí" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<ngairdín>"
+	"gairdín" Noun Masc Com Sg Ecl @P< 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<fós>"
+	"fós" Adv Gn @ADVL 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<iarraidh>"
+	"iarraidh" Verbal Noun VT @P< 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @OBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<fháil>"
+	"fáil" Verbal Noun VT Len @INF 
+"<.>"
+	"." Punct Fin 
+
+"<Féachann>"
+	"féach" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<faoin>"
+	"faoi" Prep Art Sg @PP_ADVL 
+"<mbord>"
+	"bord" Noun Masc Com Sg Ecl @P< 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<faoi>"
+	"faoi" Prep Simp @PP_ADVL 
+"<na>"
+	"na" Art Pl Def @>N 
+"<cathaoireacha>"
+	"cathaoir" Noun Fem Com Pl DefArt @P< 
+"<ach>"
+	"ach" Conj Subord @CLB 
+"<níl>"
+	"bí" Verb VI PresInd Neg @FMV 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<ansin>"
+	"ansin" Adv Loc @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Féachann>"
+	"féach" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<i>"
+	"i" Prep Simp @PP_ADVL 
+"<ngach>"
+	"gach" Det Qty Def Ecl @>N 
+"<áit>"
+	"áit" Noun Fem Com Sg @P< 
+"<ach>"
+	"ach" Conj Subord @CLB 
+"<ní>"
+	"is" Cop Pres Neg @COP 
+"<féidir>"
+	"féidir" Subst Noun Sg @PRED 
+"<léi>"
+	"le" Pron Prep 3P Sg Fem @PP_ADVL 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @OBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<fháil>"
+	"fáil" Verbal Noun VT Len @INF 
+"<.>"
+	"." Punct Fin 
+
+"<Ansin>"
+	"ansin" Adv Loc @ADVL 
+"<cloiseann>"
+	"clois" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<fuaim>"
+	"fuaim" Noun Fem Com Sg @OBJ 
+"<tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<ag>"
+	"ag" Prep Simp @PP_ASP 
+"<teacht>"
+	"teacht" Verbal Noun VI @P< 
+"<ó>"
+	"ó" Noun Fem Gen Sg @OBJ_ASP 
+	"ó" Noun Fem Gen Sg Len @OBJ_ASP 
+"<chúl>"
+	"cúl" Noun Masc Com Sg Len @N< 
+"<an>"
+	"an" Art Sg Def @>N 
+"<tseanchrainn>"
+	"crann" Noun Masc Gen Sg DefArt GuessCmpd @N< 
+"<mhóir>"
+	"mór" Adj Masc Gen Sg Len @N< 
+"<.>"
+	"." Punct Fin 
+
+"<Arbh>"
+	"is" Cop Past Q VF @COP_WH 
+"<fhéidir>"
+	"féidir" Subst Noun Sg Len @PRED 
+"<gurb>"
+	"is" Cop Pres Dep VF @CLB 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @AUG>SUBJ 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @SUBJ 
+"<?>"
+	"?" Punct Fin Q 
+
+"<Sin>"
+	"sin" Cop Pro Dem @COP_SUBJ 
+"<í>"
+	"í" Noun Fem Com Sg @AUG>SUBJ 
+	"í" Noun Fem Com Sg Len @AUG>SUBJ 
+	"í" Pron Pers 3P Sg Fem @AUG>SUBJ 
+"<an>"
+	"an" Art Sg Def @>N 
+"<fhuaim>"
+	"fuaim" Noun Fem Com Sg DefArt @SUBJ 
+"<arís>"
+	"arís" Adv Gn @ADVL 
+"<!>"
+	"!" Punct Fin 
+
+"<Éisteann>"
+	"éist" Verb VTI Vow PresInd @FMV 
+	"éist" Verb VTI Vow PresInd Len @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<go>"
+	"go" Part Ad @>ADJ 
+"<cúramach>"
+	"cúramach" Adj Base @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Ní>"
+	"is" Cop Pres Neg @COP 
+"<éan>"
+	"éan" Noun Masc Com Sg @NP 
+	"éan" Noun Masc Com Sg Len @NP 
+"<nó>"
+	"nó" Conj Coord @CC 
+"<ainmhí>"
+	"ainmhí" Noun Masc Com Sg @NP 
+"<eile>"
+	"eile" Det Dem @N< 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @SUBJ 
+"<.>"
+	"." Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<in>"
+	"i" Prep Simp 
+	"sin" Pron Dem 
+"<ann>"
+	"ann" Adv Loc @ADVL 
+	"i" Pron Prep 3P Sg Masc @PP_ADVL 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @OBJ_INF 
+"<a>"
+	"a" Part Inf @>N 
+"<chloisteáil>"
+	"cloisteáil" Verbal Noun VTI Len @INF 
+"<go>"
+	"go" Part Ad @>ADJ 
+"<maith>"
+	"maith" Adj Base @ADVL 
+"<anois>"
+	"anois" Adv Gn @ADVL 
+"<.>"
+	"." Punct Fin 
+
+"<Caithfidh>"
+	"caith" Verb VTI FutInd @FMV 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<gurb>"
+	"is" Cop Pres Dep VF @CLB 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @AUG>SUBJ 
+"<Séamus>"
+	"Séamus" Guess Prop Noun Masc Com Sg @SUBJ 
+"<é>"
+	"é" Pron Pers 3P Sg Masc @SUBJ 
+"<!>"
+	"!" Punct Fin 
+
+"<Ansin>"
+	"ansin" Adv Loc @ADVL 
+"<feiceann>"
+	"feic" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<lámh>"
+	"lámh" Noun Fem Com Sg @OBJ 
+"<bheag>"
+	"beag" Adj Base Len @N< 
+"<freisin>"
+	"freisin" Adv Gn @ADVL 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<nuair>"
+	"nuair" Conj Subord @CLB 
+"<a>"
+	"a" Part Vb Rel Indirect @>V 
+	"a" Part Vb Rel Indirect Pro @>V 
+	"a" Part Vb Rel Direct @>V 
+"<siúlann>"
+	"siúl" Guess Verb VTI PresInd @FMV_REL 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<níos>"
+	"níos" Subst Noun Sg Part Comp @>ADJ 
+"<gaire>"
+	"gar" Adj Comp @ADVL 
+"<feiceann>"
+	"feic" Verb VTI PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<a>"
+	"a" Det Poss 3P Sg Masc @>N 
+"<cheann>"
+	"ceann" Noun Masc Com Sg Len @OBJ 
+"<freisin>"
+	"freisin" Adv Gn @ADVL 
+"<!>"
+	"!" Punct Fin 
+
+"<Déanann>"
+	"déan" Verb VT PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<gáire>"
+	"gáire" Noun Masc Com Sg @OBJ 
+	"gáire" Verbal Noun VTI @INF 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<deir>"
+	"abair" Verb VTI Vow PresInd @FMV 
+"<sí>"
+	"sí" Pron Pers 3P Sg Fem Sbj @SUBJ 
+"<Fuair>"
+	"faigh" Verb VT PastInd @FMV 
+"<mé>"
+	"mé" Pron Pers 1P Sg @SUBJ 
+"<thú>"
+	"tú" Pron Pers 2P Sg Len @OBJ 
+"<!>"
+	"!" Punct Fin 
+
+"<Tá>"
+	"bí" Verb VI PresInd @FMV 
+"<áthas>"
+	"áthas" Noun Masc Com Sg @SUBJ 
+"<ar>"
+	"ar" Prep Simp @PP_ADVL 
+"<an>"
+	"an" Art Sg Def @>N 
+"<mbeirt>"
+	"beirt" Noun Fem Com Sg Ecl @P< 
+"<acu>"
+	"ag" Pron Prep 3P Pl @PP_HAS 
+"<agus>"
+	"agus" Conj Coord @CLB 
+"<téann>"
+	"téigh" Verb VTI PresInd @FMV 
+"<siad>"
+	"siad" Pron Pers 3P Pl Sbj @SUBJ 
+"<go>"
+	"go" Prep Simp @PP_ADVL 
+"<dtí>"
+	"tí" Noun Fem Com Sg Ecl @P< 
+	"tí" Noun Masc Com Sg Ecl @P< 
+"<an>"
+	"an" Art Sg Def @>N 
+"<teach>"
+	"teach" Noun Masc Com Sg DefArt @NP 
+	"teagh" Noun Masc Com Sg DefArt @NP 
+"<mar>"
+	"mar" Conj Subord @CLB 
+"<tá>"
+	"bí" Verb VI PresInd @FAUX 
+"<sé>"
+	"sé" Pron Pers 3P Sg Masc Sbj @SUBJ 
+"<in>"
+	"i" Prep Simp @PP_ADVL 
+"<am>"
+	"am" Noun Masc Com Sg @P< 
+"<rud>"
+	"rud" Noun Masc Com Sg @OBJ_INF 
+"<éigin>"
+	"éigin" Adj Masc Com Sg @N< 
+	"éigin" Adj Masc Com Sg Len @N< 
+"<a>"
+	"a" Part Inf @>N 
+"<ithe>"
+	"ithe" Verbal Noun VTI Len @INF 
+"<agus>"
+	"agus" Conj Coord @CC 
+"<braon>"
+	"braon" Noun Masc Com Sg @NP 
+"<uisce>"
+	"uisce" Noun Masc Gen Sg @N< 
+	"uisce" Noun Masc Gen Sg Len @N< 
+	"uisce" Noun Masc Com Sg @NP 
+"<a>"
+	"a" Part Inf @>N 
+"<ól>"
+	"ól" Verbal Noun VTI Len @INF 
+"<!>"
+	"!" Punct Fin 
+

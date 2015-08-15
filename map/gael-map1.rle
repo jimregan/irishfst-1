@@ -1,0 +1,240 @@
+# ==================================================================== #
+# I R I S H   D I S A M B I G U A T I O N  
+# ==================================================================== #
+# Elaine Uí Dhonnchadha
+# March 2004
+# ==================================================================== #
+# Delimiters
+# Sets
+# Disambiguation rules
+
+# ==================================================================== #
+# SENTENCE DELIMITERS
+# ==================================================================== #
+
+DELIMITERS = "<.>" "<!>" "<?>" "<#>" "<</p>>" "<</s>>" ;
+
+
+# ==================================================================== #
+# SETS
+# ==================================================================== #
+SETS 
+LIST BOS = "<<p>>" "<<s>>" (>>>);
+LIST EOS = (<<<); # end of sentence for vislcg.
+LIST COMMA = "<,>" ;
+LIST PUNCT = (":");
+
+SETS
+
+# a list of items which can follow a simple preposition
+# (art def is used to exclude "sa" e.g. "shuigh sé faoi sa chathaoir"
+# rel clause: an rud as ar/Part Vb Rel(not Cop) tháinig
+# thar/Prep a/Prep bheith/VNoun
+# mar iad/Pron Pers
+LIST POST-PREP = (Noun) (Art Def) (Det) (Pron) (Num) ADJ-PRENOM (Part Vb Rel) (Prep Simp) (Punct Quo);
+
+
+LIST OBJ-PRON = "í" "é" "iad" "iadsan" "ise" "eisean" ;
+
+
+# this type of verbal noun can be modified by attributive adj.
+# e.g. "ag mothú tinn" but not "ag déanamh mór", "a bheith tanaí"
+LIST SENSORY-VN = "bí" "mothú" "breathnú" "éirí" ;
+
+LIST VSYNTH = (Verb 1P) (Verb 2P) (Verb 3P) (Verb Auto) ;
+LIST N-OR-REL = (Noun) (Rel)  ;
+LIST TIME = "mí" "bliain" "lá" "ráithe" "uair" "seachtain";
+LIST NOUN-OR-PRO = (Noun) (Pron Pers);
+# teastaigh, caith, iarr
+# AUX see O siadhail P280
+# féach le himeacht
+LIST AUX = ("bí") ("téigh") ("tosaigh") ("tosnaigh") ("féad") ("caith") ("féach");
+LIST MOD-AUX = ("féad") ("caith");
+
+#nov 2013
+LIST FCOP = ("bí");
+
+# a list of items which can precede a noun
+LIST NOUN-PREMOD = (Art) (Det Poss) (Det Qty) (Num) ADJ-PRENOM ;
+# Any noun other than verbal-noun
+# the are several types of Noun: +Noun, Subst+Noun, Prop+Noun, Verbal+Noun,
+# Guess+Noun, but all nouns except verbal nouns have number (even guess nouns)
+LIST NOUN-NOT-VN = (Noun Sg) (Noun Pl) ;
+#LIST NP = NOUN-NOT-VN NOUN-PREMOD (Pron Pers Sbj) (Abr);
+LIST NP = (Noun Sg) (Noun Pl) (Pron Pers Sbj) (Pron Dem) (Abr);
+LIST RELPART = (Vb Rel) (Prep Rel) ;
+# ==================================================================== #
+# MAPPINGS
+# ==================================================================== #
+MAPPINGS
+
+MAP (@CC) TARGET (Conj Coord) (NOT 0 (@CLB));
+##########################################################################
+# Copula
+##########################################################################
+
+#MAP (@>ADJ) TARGET (Cop Part Sup) ; # copula
+#MAP (@COP) TARGET (Cop) (NOT 0 (Part Sup) OR (Rel) OR (@CLB)) ; # copula
+MAP (@COP_SUBJ) TARGET (Cop Pro Dem) (NOT 0 (@CLB)) ; # copula; seo, sin
+MAP (@COP_WH) TARGET (Cop Q)  ; # copula: cad, céad, cén
+MAP (@COP) TARGET (Cop) (NOT 0 (Cop Pro)) (NOT 0 (Cop Q))  (NOT 0 (@CLB) ) ; # copula
+
+##########################################################################
+# Verbal Particles
+##########################################################################
+
+MAP (@>V) TARGET (Part Vb) IF (NOT 0 (@CLB));  
+MAP (@>V) TARGET (Prep Rel); # lena n-áirítear
+
+##########################################################################
+# Finite  Auxilliary (with Verbal Noun)
+##########################################################################
+# FAUX Relatives + Synthetic
+
+# there are two versions of the REL rules to cater for the synthetic atá form of bí
+# ag feabhsú atáimid ...
+MAP (@FAUX_REL_SUBJ) TARGET AUX IF (0 (Verb Rel)) (0 VSYNTH) (*1 (Verbal Noun)) ;
+MAP (@FAUX_REL_SUBJ) TARGET AUX IF (0 (Verb Rel)) (0 VSYNTH) (*-1 (Verbal Noun)) ;
+
+MAP (@FAUX_REL_SUBJ) TARGET AUX IF (-1 RELPART) (0 VSYNTH)  (*1 (Verbal Noun));
+MAP (@FAUX_REL_SUBJ) TARGET AUX IF (-1 RELPART) (0 VSYNTH)  (*-1 (Verbal Noun));
+
+##########################################################################
+# FAUX Relatives + Analytic
+
+# ag laghdú atá an daonra ... 
+# not a thabhairt do na pobalbhreitheanna atá fabhrach ...
+MAP (@FAUX_REL) TARGET AUX IF (0 (Verb Rel)) (*-1 (Verbal Noun) BARRIER (@CLB) OR NOUN-NOT-VN) (NOT 1 (Prep));
+# conas atá sé ag rith?
+#MAP (@FAUX_REL) TARGET AUX IF (0 (Verb Rel)) (*1 (Verbal Noun) BARRIER (@CLB)) (NOT 1 (Prep));
+# include Is mise atá ag déanamh cáca
+MAP (@FAUX_REL) TARGET AUX IF (0 (Verb Rel)) (*1 (Verbal Noun) BARRIER (@CLB));
+# ag laghdú a bhí an daonra ... 
+# not a thabhairt do na pobalbhreitheanna nach raibh fabhrach ...
+MAP (@FAUX_REL) TARGET AUX IF (-1 RELPART )  (*-1 (Verbal Noun) BARRIER (@CLB) OR (Prep)) (NOT 1 (Prep));
+# ag laghdú atá an daonra
+MAP (@FAUX_REL) TARGET AUX IF (0 (Verb Rel))  (*-1 (Verbal Noun) BARRIER (@CLB) OR (Prep)) (NOT 1 (Prep));
+# conas a bhí sé ag rith?
+MAP (@FAUX_REL) TARGET AUX IF (-1 RELPART )  (*1 (Verbal Noun) BARRIER (@CLB)) (NOT 1 (Verbal Noun)) (NOT 1 (Prep));
+# aux followed by np followed by vn => np = subj
+# an lá a bhí/faux an fear/np ag snámh/vn
+# but cant have vn before the np as in:
+# daoine a bhíonn/faux ag gníomhú ...
+MAP (@FAUX_REL) TARGET AUX IF (-1 RELPART )  (*1 NP BARRIER (Verbal Noun) LINK *1 (Verbal Noun) BARRIER (@CLB) OR RELPART OR COMMA);
+
+# a bhíonn á lorg 
+# CHECK THIS ....
+# is í teorainn an cheantar atá le feiceáil ...
+# sin an fear atá a mhac ag déanamh na hoibre
+MAP (@FAUX_REL) TARGET AUX IF (0 (Verb Rel)) (*-1 (Noun Com)  BARRIER (@CLB))   (*1 (Verbal Noun) BARRIER (@CLB)) (NOT 1 (Verbal Noun));
+# e.g. sin an fear a mbíonn a mhac ag déanamh na hoibre
+# not atá iarraidh/vn
+MAP (@FAUX_REL) TARGET AUX IF (-1 RELPART LINK *-1 (Noun Com) BARRIER (@CLB))  (*1 (Verbal Noun) BARRIER (@CLB) OR (Verb)) (NOT 1 (Verbal Noun));
+# an rud is measa a fhéadfadh (chaithfidh) tarlú ...
+MAP (@FAUX_REL) TARGET AUX IF (0 ("féad") OR ("caith")) (-1 RELPART LINK *-1 (Noun Com) BARRIER (@CLB))  (*1 (Verbal Noun) BARRIER (@CLB));
+
+##########################################################################
+# FAUX Non-Relatives + Synthetic
+
+# beimid ag imeacht le chéile
+MAP (@FAUX_SUBJ) TARGET AUX IF (0 VSYNTH) (*1 (Verbal Noun) BARRIER (@CLB)) ;
+MAP (@FAUX_SUBJ) TARGET AUX IF (0 VSYNTH) (*-1 (Verbal Noun) BARRIER (@CLB)) ;
+# an rud is measa a fhéadfadh tarlú
+# tá cáca le déanamh agam
+# tá sé tar éis cáca a dhéanamh
+# not: mar atá réamhráite, ar gníomhartha ...
+
+##########################################################################
+# FAUX Non-Relatives + Analytic
+
+# not vn gen e.g go dtéann lucht eagraithe
+MAP (@FAUX) TARGET AUX IF (NOT 0 VSYNTH) (*2 (Verbal Noun) BARRIER (@CLB) OR (Punct) OR RELPART OR (Verb) ) ;
+# other verbs e.g. théadh sé ag obair ...
+#MAP (@FAUX) TARGET (Verb) IF (NOT 0 VSYNTH) (*2 (Verbal Noun) BARRIER (@CLB) OR (Punct) OR RELPART) ;
+# no NP between VN and AUX
+# aird a thabhairt/vn do na pobalbhreitheanna nach raibh/fmv riamh fabhrach do na páirtithe beaga
+MAP (@FAUX) TARGET AUX IF (NOT 0 VSYNTH) (*-1 (Verbal Noun) BARRIER NP OR (@CLB)) ;
+##########################################################################
+# Finite Main Verb
+##########################################################################
+# FMV Relatives + Synthetic
+
+# a cuireadh tús le sraith
+MAP (@FMV_REL_SUBJ) TARGET (Verb) IF (0 VSYNTH) (-1 RELPART) (NOT 0 AUX);
+
+# a bhíodh ag Seán 
+MAP (@FMV_REL_SUBJ) TARGET (Verb) IF (0 VSYNTH) (-1 RELPART) (0 AUX) (NOT *-1 (Verbal Noun)) (NOT *1 (Verbal Noun));
+#  atáimse i dteagmáil
+MAP (@FMV_REL_SUBJ) TARGET (Verb) IF (0 VSYNTH) (0 (Rel));
+
+
+# 
+##########################################################################
+# FMV Relatives + Analytic
+
+# nach raibh riamh fabhrach/adv ... 
+# nach smaoiníonn ach/conj ..
+# a chum é 
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (Prep) OR (Adv) OR (Conj) OR (Adj) OR (Pron Pers) OR COMMA) (-1 RELPART);
+# a d´ ith
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (-1 (Part Vb)) (-2 RELPART);
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (Prep) OR (Adv) OR (Conj) OR (Adj) OR COMMA) (0 (Verb Rel));
+# comhlachais foirne atá ionadaitheach do mhúinteoirí
+# not sure that this is safe
+#MAP (@FMV_REL_SUBJ<) TARGET ("bí" Verb Rel) IF (NOT 0 VSYNTH) (*-1 (Noun) BARRIER (@CLB));
+# ar lucht oibre a bhí iarraidh ...
+# not safe EG: ar a glúine a bhí sé
+#MAP (@FMV_REL_SUBJ<) TARGET ("bí" Verb) IF (NOT 0 VSYNTH) (-1 (Part Rel)) (*-2 (Noun) BARRIER (@CLB));
+
+# an fear a bhfuil a mhac tinn
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (Det Poss)) (-1 RELPART);
+# an fear atá a mhac tinn
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (Det Poss)) (0 (Verb Rel));
+# an fear a phléasc
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (<<<)) (-1 RELPART);
+# sin mar atá
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (1 (<<<)) (0 (Verb Rel));
+
+# an fear a phléasc
+#is ansin go díreach a las solas dearg na gréine
+# an brú/obj a chuir an GPA/subj orthu
+# => following rule not safe ...
+####MAP (@FMV_REL_SUBJ<) TARGET (Verb) IF (NOT 0 VSYNTH) (-1 (Rel Direct)) (*-2 (Noun) BARRIER (@CLB));
+# na factóirí a bhfuil (T) ina ndiaidh
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (NOT 1 (Prep)) (-1 (Indirect)) ;
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (NOT 1 (Prep)) (-1 RELPART) (NOT *-2 (Noun Com) BARRIER (@CLB)) ;
+# mar atá sé déanta
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (NOT 1 (Prep)) (0 (Verb Rel)) (NOT *-1 (Noun Com) BARRIER (@CLB)) ;
+# next one not so safe ... assume the subj is to the right of the verb ...
+# cigireachtaí a chinnfidh an tAire
+MAP (@FMV_REL) TARGET (Verb) IF (NOT 0 VSYNTH) (NOT 1 (Prep) OR (Adj) OR (Adv)) (-1 RELPART) (*1 NP BARRIER (@CLB)) ;
+
+##########################################################################
+# FMV Non-Relatives + Synthetic
+# exception Tá´s (=tá fios) agam 
+MAP (@FMV_SUBJ) TARGET (Verb Noun) IF (NOT 0 (Rel)) ;
+#MAP (@FMV_SUBJ) TARGET VSYNTH (NOT 0 (Verb Rel)) (NOT -1 (Part Vb Rel)) ;
+# beimid ar an bhfarraige
+MAP (@FMV_SUBJ) TARGET (Verb) IF (0 VSYNTH ) (NOT 0 AUX) (NOT -1 RELPART) ;
+#MAP (@FMV_SUBJ) TARGET (Verb) IF (0 VSYNTH ) (0 AUX) (NOT -1 RELPART) (NOT 0 (Verb Rel)) (NOT *1 (Verbal Noun) LINK *1 (@CLB)) (NOT *-1 (Verbal Noun) LINK *-1 (@CLB)) ;
+MAP (@FMV_SUBJ) TARGET (Verb) IF (0 VSYNTH ) (0 AUX) (NOT -1 RELPART) (NOT 0 (Verb Rel)) (NOT *1 (Verbal Noun) LINK *1 (@CLB)) (NOT *-1 (Verbal Noun) BARRIER (Verb) OR (@CLB)) ;
+
+##########################################################################
+# FMV Non-Relatives + Analytic 
+
+# tá an carr sa gharáiste
+MAP (@FMV) TARGET (Verb) IF (NOT 0 VSYNTH OR AUX) (NOT -1 RELPART) (NOT -2 RELPART);
+MAP (@FMV) TARGET (Verb) IF (0 AUX) (NOT 0 VSYNTH) (NOT -1 RELPART) (NOT 0 (Verb Rel)) (NOT *-1 (Verbal Noun) BARRIER (@CLB) OR COMMA) (NOT *1 (Verbal Noun) BARRIER (@CLB) OR COMMA OR (Verb));
+
+##########################################################################
+# Phrasal Verb -> MOVED TO MAP2
+##########################################################################
+
+#MAP (@V<) TARGET (Prep) IF (-1 (Verb)) (NOT -1 VSYNTH) (NOT *-1 (Rel)); # laghdaigh ar a neart
+# but: ... a labhair leis an mbean (not pp-loc if immed. after verb )
+# also Ind Obj e.g. thug sé an leabhar do Mháire
+
+
+#=====#
+  END #
+#=====#

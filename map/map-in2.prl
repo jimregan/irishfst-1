@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+# Elaine Mar 2007
+# Usage: cat TestData.map | map-in.prl > TestData.sen
+# Elaine Nov 2008 - only take first reading where ther is more than one ...
+$new = 0;
+while ( <STDIN> ) {
+    chomp;
+    #print "|$_|";
+    if (/^\"</) {
+    	s/ /_/g;	# <ar feadh> needs underscore
+    	s/\"</ /;
+    	s/\>"/ /;
+	$new = 1;	# new token
+	print $_;
+    }
+    elsif (/^\t/ && $new ==1) {
+	$new = 0;	# not new token
+    	s/\t\"//;	# remove initial tab and quote
+    	s/\s\"//;	# "bia " remove mysterious space from each lemma 
+    	s/\<\<\<//g;	# remove <<<´s inserted by CG map files
+    	s/\s+/\ /g;
+    	s/ /\+/g;	# reduce multiple spaces to one space
+    	s/\+$//g;	# remove the final +
+    	s/\"//g;
+	print $_;
+    }
+    if (/\+Fin/) {
+	print "\n";
+    }
+}
+print " ";	# append spaces to end

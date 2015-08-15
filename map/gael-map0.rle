@@ -1,0 +1,83 @@
+# ==================================================================== #
+# I R I S H   D I S A M B I G U A T I O N  
+# ==================================================================== #
+# Elaine Uí Dhonnchadha
+# March 2004
+# ==================================================================== #
+# STEP 1: INSERT CLAUSE BOUNDARIES
+# ==================================================================== #
+# ==================================================================== #
+# Delimiters
+# Sets
+# Disambiguation rules
+
+# ==================================================================== #
+# SENTENCE DELIMITERS
+# ==================================================================== #
+
+DELIMITERS = "<.>" "<!>" "<?>" "<#>" "<</p>>" "<</s>>" ;
+
+
+# ==================================================================== #
+# SETS
+# ==================================================================== #
+SETS 
+LIST BOS = "<<p>>" "<<s>>" (>>>);
+LIST EOS = (<<<); # end of sentence for vislcg.
+
+LIST COMMA = "<,>" ;
+
+SETS
+
+
+# Any noun other than verbal-noun
+# the are several types of Noun: +Noun, Subst+Noun, Prop+Noun, Verbal+Noun,
+# Guess+Noun, but all nouns except verbal nouns have number (even guess nouns)
+LIST NOUN-NOT-VN = (Noun Sg) (Noun Pl) ;
+
+# a list of items which can precede a noun
+LIST NOUN-PREMOD = (Art) (Det Poss) (Det Qty) (Num) ADJ-PRENOM ;
+
+# a list of items which can follow a simple preposition
+# (art def is used to exclude "sa" e.g. "shuigh sé faoi sa chathaoir"
+# rel clause: an rud as ar/Part Vb Rel(not Cop) tháinig
+# thar/Prep a/Prep bheith/VNoun
+# mar iad/Pron Pers
+LIST POST-PREP = (Noun) (Art Def) (Det) (Pron) (Num) ADJ-PRENOM (Part Vb Rel) (Prep Simp) (Punct Quo);
+
+
+LIST OBJ-PRON = "í" "é" "iad" "iadsan" "ise" "eisean" ;
+
+
+# this type of verbal noun can be modified by attributive adj.
+# e.g. "ag mothú tinn" but not "ag déanamh mór", "a bheith tanaí"
+LIST SENSORY-VN = "bí" "mothú" "breathnú" "éirí" ;
+
+LIST VSYNTH = (Verb 1P) (Verb 2P) (Verb 3P) (Verb Auto) ;
+LIST N-OR-REL = (Noun) (Rel)  ;
+LIST TIME = "mí" "bliain" "lá" "ráithe" "uair" "seachtain";
+LIST NOUN-OR-PRO = (Noun) (Pron Pers);
+LIST AUX = ("bí") ;
+LIST PUNCT = (":");
+# ==================================================================== #
+# MAPPINGS
+# ==================================================================== #
+MAPPINGS
+# CLB-SCOMP
+MAP (@CLB) TARGET (Cop Dep); # Dúirt sé [gur Seán ...
+#MAP (@CLB) TARGET (Cop Rel); # Dúirt sé [nár Seán ...
+MAP (@CLB) TARGET (Conj Subord); # ... [nuair ...
+MAP (@CLB) TARGET (Part Vb Cmpl); # ... [nach mbíonn
+#MAP (@CLB) TARGET (Prep Rel);	# ... [ina mbíonn
+MAP (@CLB) TARGET PUNCT;	# ... : Ar an maidin dár gcionn
+MAP (@CLB) TARGET (Conj Coord) IF (1 (Verb)); # ... [mar bhí OR ... [mar atá
+# ...agus is léir; nó cad faoi
+MAP (@CLB) TARGET (Conj Coord) IF (1 (Cop Pres) OR (Cop Past) OR (Cop Pron) OR (Cop Q)); 
+MAP (@CLB) TARGET (Conj Coord) IF (1 (Part Vb)) (NOT 1 (Part Vb Rel)) (2 (Verb)); # ... [agus ná déan siúd
+
+#=====#
+  END #
+#=====#
+
+
+
