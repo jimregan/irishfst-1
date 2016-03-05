@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+# Elaine Mar 2007
+# Usage: cat file.map.out | bracks.prl > ../../rand/chkd/file.map.chunks
+# just output the bracketed text ...
+
+$printit = 0;
+while ( <STDIN> ) {
+    #chomp;
+    if ($_ =~/\[S / || $_=~/\[Z /) { 
+	s/\[Z //;
+	s/ Z\]//;
+	$printit = 1;
+	#print "here0";
+    	print "$_";
+#     } 
+#     elsif ($_ =~/ S\]/) { 
+#	$printit = 0;
+#    	print "$_\n";
+#     }
+#     elsif ($printit == 1) {
+#     #print "here4 ";
+#     print "$_";
+     };
+}

@@ -1,0 +1,369 @@
+############################################################################
+# This regex file is for chunking dependency mapped sentences.
+# Input format "token lemma+MTags+@DTag token lemma+MTags+@DTag etc. 
+# Elaine Uí Dhonnchadha 2008
+############################################################################
+# Alphabet used for tokens and lemmas
+define Alpha [a|á|b|c|d|e|é|f|g|h|i|í|j|k|l|m|n|o|ó|p|q|r|s|t|u|ú|v|w|x|y|z|A|Á|B|C|D|E|É|F|G|H|I|Í|J|K|L|M|N|O|Ó|P|Q|R|S|T|U|Ú|V|W|X|Y|Z|1|2|3|4|5|6|7|8|9|%0|%.|%,|%-|%+|%*|%/|%>|%<|%?|%:|'|''|%_|%@];
+# Alphabet used for Morphological Tags
+define MAlpha [a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|1|2|3|%_];
+# Alphabet used for Dependency Tags
+define DAlpha [A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|%<|%>|%_];
+# define whitespace
+define SP [" "|"\n"|"\t"]+ ;
+############################################################################
+# Tag/Token/Lemma definitions
+define TokLem     [Alpha+ SP Alpha+ ];	# chuir cuir
+define MTag       [%+ MAlpha+];		# +Verb
+define TokLemMTag [TokLem MTag+ %+];	# chuir cuir|+Verb+Past|+
+define DTag       [%@ DAlpha+];		# @FMV
+# Quo has no dependency tag at present - this may change
+define QuoTag     [%+Punct%+Quo];             
+define TokLemQTag [TokLem QuoTag];  	# ' '+Punct+Quo
+############################################################################
+# Space followed by optional Quote
+define SPQ [SP (TokLemQTag SP)];  	
+############################################################################
+# Verb Dependency Tags
+define VTag       [%@FAUX|%@FAUX%_REL|%@FMV|%@FMV%_REL];
+define VSTag      [%@FAUX%_SUBJ|%@FAUX%_REL%_SUBJ|%@FMV%_SUBJ|%@FMV%_REL%_SUBJ];
+define PreVTag    [%@%>V];
+define PostVTag   [%@V%<];
+# Verb Pre & Post Modifiers
+# verb post mod is the prep in phrasal verb; dar liom; d´éirigh le Máire
+# now bracketing this with the following noun rather than the preceding verb
+define PreVStr    [TokLemMTag PreVTag SP];
+#define PostVStr   [TokLemMTag PostVTag SP];
+# Verb Chunk
+define VStr       [TokLemMTag VTag SP];
+define VChunk     [PreVStr* VStr]; # old VChunk [PreVStr* VStr PostVStr*];
+define VChunkBr   [VChunk @-> "[V " ... " ] "];
+
+echo >>> V CHUNK
+read regex VChunkBr;
+save stack vchunk.fst
+clear stack
+# Verb_Subject Chunk
+define VSStr      [TokLemMTag VSTag SP];
+define VSChunk    [PreVStr* VSStr]; # old VSChunk [PreVStr* VSStr PostVStr*];
+define VSChunkBr  [VSChunk @-> "[VS " ... " ] "];
+
+echo >>> VS CHUNK
+read regex VSChunkBr;
+save stack vschunk.fst
+clear stack
+
+############################################################################
+# Infinitive
+define ITag       [%@INF];
+define IStr       [TokLemMTag ITag SP];
+define PreITag    [%@%>N];
+define PreIStr    [TokLemMTag PreITag SP];
+define IChunk     [(PreIStr) IStr];
+define IChunkBr   [IChunk @-> "[I " ... " I] "];
+
+echo >>> I CHUNK
+read regex IChunkBr;
+save stack ichunk.fst
+clear stack
+                                                                                
+
+############################################################################
+# Noun Dependency Tags
+#define NTag       [%@INF|%@NP|%@OBJ|%@OBJ%_ASP|%@OBJ%_INF|
+define NTag       [%@NP| %@OBJ|
+                   %@SUBJ|%@SUBJ%_ASP|%@SUBJ%_INF|%@SUBJ%_REL|%@SUBJ%_OR%_OBJ|
+                   %@P%<|%@PC%<
+                  ];
+define PreNTag    [%@%>N|%@AUG%>SUBJ];
+define PostNTag   [%@N%<|%@PN%<];
+# Adjectival modifier separators
+define SepTag1    [%@COM];              # camóg (comma)
+define SepTag2    [%@CC];               # agus, nó (and, or)
+# Noun Pre & Post Modifiers
+define PatTag     [%+Part%+Pat];        # Ó, Ní, Uí, Mac etc. in names
+define TokLemPTag [TokLem PatTag];      # Ó ó+Part+Pat
+define SupTag     [%+Part%+Sup%+%@%>ADJ];        # superlative "is"
+define TokLemSTag [TokLem SupTag];      # is is+Part+Pat
+define SupStr     [TokLemSTag SP];      # ,
+define ArtTag     [["an an+Art"]|["na na+Art"]|["a an+Art"]|TokLemPTag];
+define TokLemATag [ArtTag MTag* %+];
+define ArtStr     [TokLemATag PreNTag SP];
+define PreGStr    [TokLemMTag PreNTag SPQ];     # doesnt include Art
+define PreNStr    [[TokLemATag|TokLemMTag] PreNTag SPQ]; # includes Art
+define SepStr1    [TokLemMTag SepTag1 SPQ];     # ,
+define SepStr2    [TokLemMTag SepTag2 SPQ];     # agus (and)
+define PostNStr0  [TokLemMTag PostNTag SPQ];    # ard (tall)
+define PostNStr1  [SepStr1 PostNStr0];          # , tanaí (, thin)
+define PostNStr2  [SepStr2 PostNStr0];          # agus caol (and narrow)
+define PostNStr3  [SupStr PostNStr0];           # is mó
+define PostNStr   [PostNStr0|PostNStr3|[PostNStr0 PostNStr1+ (SepStr1) (PostNStr2)]];
+# Noun Chunk
+define NStr       [TokLemMTag NTag SPQ];
+#Head Gen. NP: [NStr PosNStr*], Gen Mod NP: [(Art) Head Post*],
+define GHead      [NStr PostNStr*];
+define GChunk     [(ArtStr) PostNStr*];
+define NGChunk    [GHead GChunk];
+define NChunk     [PreNStr* NStr PostNStr* ((ArtStr PreGStr*) PostNStr+)];
+define NChunkBr1  [NChunk @-> "[NP " ... " NP] "];
+
+echo >>> NP CHUNK
+read regex NChunkBr1;
+save stack npchunk.fst
+clear stack
+                                                                                
+############################################################################
+# NP: Object of Aspectual
+define OATag       [%@OBJ%_ASP];
+define OAStr       [TokLemMTag OATag SP];
+define OAChunk     [PreNStr* OAStr PostNStr* ((ArtStr PreGStr*) PostNStr+)];
+define OAChunkBr   [OAChunk @-> "[OA " ... " OA] "];
+
+echo >>> OA CHUNK
+read regex OAChunkBr;
+save stack oachunk.fst
+clear stack
+                                                                                
+############################################################################
+# NP: Object of Infinitive
+define OITag       [%@OBJ%_INF];
+define OIStr       [TokLemMTag OITag SP];
+define OIChunk     [PreNStr* OIStr PostNStr* ((ArtStr PreGStr*) PostNStr+)];
+define OIChunkBr   [OIChunk @-> "[OI " ... " OI] "];
+
+echo >>> OI CHUNK
+read regex OIChunkBr;
+save stack oichunk.fst
+clear stack
+                                                                                
+############################################################################
+# Preposition Dependency Tags
+#define PPTag       [%@PP%_ADVL|%@PP%_ASP|%@PP%_HAS|%@PP%_NEG|
+#                    %@PP%_OBL|%@PP%_PRED|%@PP%_STAT|%@PP%_SUBJ];
+define PPASTag       [%@PP%_ASP|%@PP%_STAT];
+define PPATag       [%@PP%_ASP];
+define PPNTag       [%@PP%_NEG];
+###define PPASStr       [TokLemMTag PPASTag SP];
+define PPADTag       [%@PP%_ADVL|%@PP%_HAS|%@PP%_NEG|%@PP%_OBL|%@PP%_PRED|%@PP%_SUBJ];
+###define PPADStr       [TokLemMTag PPADTag SP];
+#define PPChunkBr   [[PPADStr "[NP " ?+ " NP] "] @> "[PP " ... " PP] "];
+# Simple and Compound Prepositions with NP complement
+define PSimpTag    [[%+Prep%+Simp]|  # le(Prep Simp) = with; 
+		    [%+Prep%+Poss]|  # lena(Prep Poss) = with its; 
+		    [%+Prep%+Cmpd]|  # ar nós (Prep Cmpd) = such as
+		    [%+Prep%+CmpdNoGen]|  # maidir le (Prep Cmpd) = regarding
+		    [%+Prep%+Art]];  # sa (Prep Art) = in the
+define TokLemPSTag [TokLem PSimpTag MTag* %+];  #
+define PPSimpStr   [TokLemPSTag PPADTag SP];
+define PPSimpAStr   [TokLemPSTag PPATag SP];    # PP_ASP only
+define PPSimpNStr   [TokLemPSTag PPNTag SP];    # PP_NEG only
+
+
+define PPChunkBr2   [[PPSimpStr "[NP " ?+ " NP] "] @> "[PP " ... " PP] "];
+
+echo >>> PP2 CHUNK
+read regex PPChunkBr2;
+save stack pp2chunk.fst
+clear stack
+                                                                                
+# Aspectual PPs
+define PPASSimpStr   [TokLemPSTag PPASTag SP];
+#define PPChunkBr3   [[PPASSimpStr "[NP " ?+ " NP] "] @> "[PP-ASP " ... " PP-ASP] "];
+# do mo chabhrú
+define PPChunkBr3   [[PPASSimpStr ("[OA " ?+ " OA] ") "[NP " ?+ " NP] "] @> "[PP-ASP " ... " PP-ASP] "];
+
+echo >>> PP3 CHUNK
+read regex PPChunkBr3;
+save stack pp3chunk.fst
+clear stack
+                                                                                
+# Conjugated Prepositions 
+# These preps. incorporate a pronoun. Therefore PP has no nested NP complement.
+define PPronTag    [%+Pron%+Prep];              # liom = with me
+define TokLemPPTag [TokLem PPronTag MTag+ %+];  # liom le Tags +
+define PPPronStr   [TokLemPPTag PPADTag SP];
+# can have "leis(Pron Prep) féin(Pron Ref)" = with himself
+define PPChunkBr1   [PPPronStr PostNStr0*  @-> "[PP " ... " PP] "];
+
+echo >>> PP1 CHUNK
+read regex PPChunkBr1;
+save stack pp1chunk.fst
+clear stack
+                                                                                
+############################################################################
+# Adverbial Dependency Tags
+define ADTag       [%@ADVL];
+define PreADTag    [%@%>ADJ];
+define PostADTag   [%@ADVL%<];
+# Adverbial Pre & Post Modifiers
+define PreADStr    [TokLemMTag PreADTag SP];
+define PostADStr   [TokLemMTag PostADTag SP];
+# Adverbial Chunk
+define ADStr       [TokLemMTag ADTag SP];
+define ADChunk     [PreADStr* ADStr PostADStr*];
+define NADChunk    [PreNStr* ADStr PostNStr*];	# an tseachtain seo - this week
+define ADChunkBr   [[ADChunk|NADChunk] @-> "[AD " ... " ] "];
+
+echo >>> AD CHUNK
+read regex ADChunkBr;
+save stack adchunk.fst
+clear stack
+                                                                                
+############################################################################
+# Copula Dependency Tags
+define COPTag       [%@COP|%@COP%_WH|%@COP%_SUBJ];
+define COPStr       [TokLemMTag COPTag SP];
+define COPChunkBr   [COPStr @-> "[COP " ... "] "];
+
+echo >>> COP CHUNK
+read regex COPChunkBr;
+save stack copchunk.fst
+clear stack
+                                                                                
+############################################################################
+# Clause Boundary Dependency Tags
+define CBTag       [%@CLB];	# go
+define PreCBTag    [%@CC];	# ná go
+define PreCBStr    [TokLemMTag PreCBTag SP];
+define CBStr       [TokLemMTag CBTag SP];
+define CBChunkBr   [PreCBStr* CBStr @-> "[CB " ... "] "];
+
+echo >>> CB CHUNK
+read regex CBChunkBr;
+save stack cbchunk.fst
+clear stack
+                                                                                
+############################################################################
+# Predicate Dependency Tags
+define PRTag       [%@PRED];
+define PostPRTag   [%@PRED%<];
+define PRStr       [TokLemMTag PRTag SP];
+define PostPRStr   [TokLemMTag PostPRTag SP];
+# is fearr (@ADJ> @PRED)
+# go maith (@ADJ> @PRED)
+define PRChunk     [PreADStr* PRStr PosPRStr*]; 
+# na breiseán bia
+# teorainn an cheantair
+#define NChunk     [PreNStr* NStr PostNStr* ((ArtStr PreGStr*) PostNStr+)];
+define NPRChunk    [PreNStr* PRStr PostPRStr* ((ArtStr PreGStr*) PostNStr+)];	
+# is mór an trua
+define NPRChunk2    [PreNStr* PRStr (ArtStr PostPRStr) PostNStr*];	
+define PRChunkBr   [[PRChunk|NPRChunk|NPRChunk2] @-> "[PRED " ... "] "];
+
+echo >>> PR CHUNK
+read regex PRChunkBr;
+save stack prchunk.fst
+clear stack
+                                                                                
+############################################################### 
+
+# Infinitival Phrases
+# [INF (gan) [OI cáca OI] [IF a dhéanamh]]
+#define INFChunkBr   [[(PPSimpStr) ("[OI " ?+ " OI] ") "[I " ?+ " I] "]  @-> "[INF " ... " INF] " ];
+define INFChunkBr   [(PPSimpNStr) [("[OI " ?+ " OI] ") "[I " ?+ " I] "]  @> "[INF " ... " INF] " ];
+
+echo >>> INF CHUNK
+read regex INFChunkBr;
+save stack infchunk.fst
+clear stack
+                                                                                
+############################################################################
+# Aspectual Phrases
+# [ASP (tar_éis) [OI cáca] [INF a dhéanamh]]
+# [ASP [PP ag déanamh cáca PP] [OA cáca OA]]
+define ASPChunkBr1   [PPSimpAStr ("[OI " ?+ " OI] ") "[INF " ?+ " INF] " @> "[ASP " ... " ASP] "] ;
+
+echo >>> ASP1 CHUNK
+read regex ASPChunkBr1;
+save stack asp1chunk.fst
+clear stack
+                                                                                
+define ASPChunkBr2   ["[PP-ASP " ?+ " PP-ASP] " ("[OA " ?+ " OA] ") @-> "[ASP " ... " ASP] "] ;
+
+echo >>> ASP2 CHUNK
+read regex ASPChunkBr2;
+save stack asp2chunk.fst
+clear stack
+                                                                                
+############################################################################
+# 2nd Conjoint Dependency Tags
+define CJTag       [%@CC|%@CS];	
+define CJ2Str       [TokLemMTag CJTag SP];
+define ConjStr1  [ "[NP " ?+ " NP] " 
+		 | "[PP " ?+ " PP] " 
+		 | "[V " ?+ " ] " 
+		 | "[VS " ?+ " ] " 
+		 | "[AD " ?+ " ] " 
+		 | "[COP " ?+ " ] " 
+		 | "[PRED " ?+ " ] " 
+		 ];
+define CJ2ChunkBr1   [[CJ2Str ConjStr1] @> "[CJ2 " ... "CJ2] "];
+
+echo >>> CJ2-1 CHUNK
+read regex CJ2ChunkBr1;
+save stack cj21chunk.fst
+clear stack
+                                                                                
+define ConjStr2  [ "[ASP " ?+ " ASP] " 
+		 | "[PP-ASP " ?+ " PP-ASP] " 
+		 | "[I " ?+ " I] " 
+		 | "[OI " ?+ " OI] " 
+		 | "[INF " ?+ " INF] " 
+		 ];
+define CJ2ChunkBr2   [[CJ2Str ConjStr2] @> "[CJ2 " ... "CJ2] "];
+
+echo >>> CJ2-2 CHUNK
+read regex CJ2ChunkBr2;
+save stack cj22chunk.fst
+clear stack
+                                                                                
+###############################################################
+# Bracketed Sentence
+define Zen   [?* @-> "[Z " ... " Z]"];
+
+echo >>> Z CHUNK
+read regex Zen;
+save stack zchunk.fst
+clear stack
+###############################################################                                                                               
+read regex @"vchunk.fst" 
+.o. @"vschunk.fst"
+.o. @"npchunk.fst"
+.o. @"ichunk.fst"
+.o. @"oichunk.fst"
+.o. @"oachunk.fst"
+.o. @"pp2chunk.fst"
+.o. @"pp3chunk.fst"
+.o. @"pp1chunk.fst"
+.o. @"adchunk.fst"
+.o. @"copchunk.fst"
+.o. @"cbchunk.fst"
+.o. @"prchunk.fst"
+#.o. @"infchunk.fst"
+#.o. @"asp1chunk.fst"
+#.o. @"asp2chunk.fst"
+.o. @"cj21chunk.fst"
+#.o. @"cj22chunk.fst"
+.o. @"zchunk.fst"
+;
+save stack chunker1.fst
+clear stack
+
+###############################################################
+# Bracketed Sentence
+define Sen   [?* @-> "[S " ... " S]"];
+
+echo >>> S CHUNK
+read regex Sen;
+save stack schunk.fst
+clear stack
+###############################################################                                                                               
+read regex @"infchunk.fst"
+.o. @"asp1chunk.fst"
+.o. @"asp2chunk.fst"
+.o. @"cj22chunk.fst"
+.o. @"schunk.fst"
+;
+save stack chunker2.fst
+clear stack
+###############################################################

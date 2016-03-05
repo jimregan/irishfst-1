@@ -1,0 +1,31 @@
+#!/usr/bin/perl
+# Elaine Mar 2007
+# Usage: cat TestData.chunks | cover.prl > TestData.cover
+
+$process =0;
+$printit = 0;
+#$count=1;
+$linecount=1;
+#print "LINE $linecount:\n";
+while ( <STDIN> ) {
+    $linecount++;
+    #chomp;
+    #print "$_\n";
+    if ($_ =~/\[/) { 
+    	$process =1;
+	#print "here0";
+   	s/\]/\] /g;    # insert space after ] to ensure correct split next line 
+    	@toks = split(/\s+/, $_);
+    	for ($count=0; $count <=  $#toks; ++$count){
+    	   if ($toks[$count] !~ /\+/) {	   #NOTE: DOES NOT PRINT TAGS
+    		$printit =1;
+		#print "here1";
+		print "$toks[$count] ";
+    	   }
+        } # for
+    } #if [
+#    print "\nLINE $linecount:\n ";
+    print "\n";
+}
+print "\n";
+

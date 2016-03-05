@@ -1,0 +1,4 @@
+ [V Chuaigh téigh+Verb+VTI+PastInd+Len+@FMV  ] [NP siad siad+Pron+Pers+3P+Pl+Sbj+@SUBJ  NP] [NP zzz zzz+Guess+Abr+@OBJ  NP] [PP AG ag+Prep+Simp+@PP_ADVL [NP Ar ar+Noun+Masc+Com+Sg+@P< 123 123+Num+Dig+@N<  NP]  PP] do do+Prep+Simp [AD amach amach+Adv+Dir+@ADVL  ] . .+Punct+Fin
+ [V Chuir cuir+Verb+VTI+PastInd+Len+@FMV  ] [NP Máire Máire+Prop+Noun+Fem+Com+Sg+@SUBJ leabhar leabhar+Adj+Fem+Com+Sg+Len+@N<  NP] [PP ar ar+Prep+Simp+@PP_ADVL [NP an an+Art+Sg+Def+@>N mbord bord+Noun+Masc+Com+Sg+Ecl+@P<  NP]  PP] . .+Punct+Fin
+ [V Thug tabhair+Verb+VD+PastInd+Len+@FMV  ] [NP an an+Art+Sg+Def+@>N cailín cailín+Noun+Masc+Com+Sg+DefArt+@SUBJ leabhar leabhar+Adj+Masc+Com+Sg+@N<  NP] [PP dá de+Prep+Poss+3P+Sg+Fem+@PP_ADVL [NP cara cara+Noun+Masc+Com+Sg+@P<  NP]  PP] . .+Punct+Fin
+ 
