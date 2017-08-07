@@ -516,7 +516,7 @@ define TOK1MWE [ MWE @-> M1 ... M2 ];
 
 echo >>> tok1, bound _ bound
 
-define TOK1Bounds [ Bound _ Bound ];
+#define TOK1Bounds [ Bound _ Bound ];
 
 echo >>> tok1, nl
 
@@ -535,7 +535,7 @@ define TOK1RMM12 [ [M1 | M2] -> 0 ];
 echo >>> TOK1
 
 define TOK1 [
-TOK1MWE || TOK1MWE
+TOK1MWE || Bound _ Bound
 .o. TOK1NL
 .o. TOK1RMM12
 ];
