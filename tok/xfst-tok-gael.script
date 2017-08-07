@@ -510,10 +510,34 @@ echo >>> longest match, inserts newline after every token
 
 define Bound [SINGLE | WS | .#. ];
 
-define TOK1 [ 
-MWE @-> M1 ... M2 || Bound _ Bound
-.o. Token @-> ... NL 
-.o. [M1 | M2] -> 0
+echo >>> tok1, mwe
+
+define TOK1MWE MWE @-> M1 ... M2
+
+echo >>> tok1, bound _ bound
+
+define TOK1Bounds Bound _ Bound
+
+echo >>> tok1, nl
+
+define TOK1NL Token @-> ... NL
+
+echo >>> tok1, remove bounds
+
+define TOK1RMM12 [M1 | M2] -> 0
+
+#define TOK1 [ 
+#MWE @-> M1 ... M2 || Bound _ Bound
+#.o. Token @-> ... NL 
+#.o. [M1 | M2] -> 0
+#];
+
+echo >>> TOK1
+
+define TOK1 [
+TOK1MWE || TOK1MWE
+.o. TOK1NL
+.o. TOK1RMM12
 ];
 
 
