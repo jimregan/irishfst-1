@@ -500,7 +500,9 @@ define MWE1 [M1 MWE M2] ;
 echo >>> define tokens 
 
 
-define Token [ MUTWORD | ENGWORD | WORD | SYMBOL | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | MWE1 | NONSTD | DIVTAG];
+define TokenNoSym [ MUTWORD | ENGWORD | WORD | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | MWE2 | NONSTD | DIVTAG];
+
+define Token [ TokenNoSym | SYMBOL ];
 
 #--------------------------------------------
 
@@ -520,7 +522,15 @@ echo >>> tok1, bound _ bound
 
 echo >>> tok1, nl
 
-define TOK1NL [ Token @-> ... NL ];
+define TOK1NL1 [ TokenNoSym @-> ... NL ];
+
+echo >>> tok1, nl, 2
+
+define TOK1NL2 [ SYMBOL @-> ... NL ];
+
+echo >>> tok1, nl
+
+define TOK1NL [ TOK1NL1 .o. TOK1NL2 ];
 
 echo >>> tok1, remove bounds
 
