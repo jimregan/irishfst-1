@@ -560,7 +560,49 @@ define TOK1NL [ TOK1NL1 .o. TOK1NL2 ];
 
 echo >>> tok1nl
 
-define TOK1NL [ MUTWORDNL | ENGWORDNL | WORDNL | ABBRNL | PTAGNL | CONTNL | NOTYPONL| CHILDESNL | INITNL | ITEMNL | WEBADDRNL | NUMNL | MWE2NL | NONSTDNL | DIVTAGNL | SYMBOLNL];
+define TOK1NL1 [ MUTWORDNL | ENGWORDNL | WORDNL | ABBRNL ];
+
+echo >>> tok1nl2
+
+define TOK1NL2 [ PTAGNL | CONTNL ];
+
+echo >>> tok1nl3 
+
+define TOK1NL3 [ NOTYPONL| CHILDESNL ];
+
+echo >>> tok1nl4 
+
+define TOK1NL4 [  INITNL | ITEMNL ];
+
+echo >>> tok1nl5 
+
+define TOK1NL5 [  WEBADDRNL | NUMNL ];
+
+echo >>> tok1nl5 
+
+define TOK1NL5 [  MWE2NL | NONSTDNL ];
+
+echo >>> tok1nl6 
+
+define TOK1NL6 [  DIVTAGNL | SYMBOLNL];
+
+echo >>> tok1nlc1 
+
+define TOK1NLC1 [  TOK1NL1 | TOK1NL2];
+
+echo >>> tok1nlc2 
+
+define TOK1NLC2 [  TOK1NL3 | TOK1NL4];
+
+echo >>> tok1nlc3 
+
+define TOK1NLC3 [  TOK1NL5 | TOK1NL6];
+
+echo >>> tok1nlc4 
+
+define TOK1NL [  TOK1NLC1 | TOK1NLC2 | TOK1NLC3];
+
+
 
 echo >>> tok1, remove bounds
 
