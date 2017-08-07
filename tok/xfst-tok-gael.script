@@ -472,7 +472,7 @@ define MWE1 [M1 MWE M2] ;
 echo >>> define tokens 
 
 
-define Token [ MUTWORD | ENGWORD | WORD | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | MWE2 | NONSTD | DIVTAG | SYMBOL];
+define Token [ MUTWORD | ENGWORD | WORD | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | NONSTD | DIVTAG | SYMBOL];
 
 #--------------------------------------------
 
@@ -538,10 +538,6 @@ echo >>> tok1, nl, 13
 
 define NUMNL [ NUM @-> ... NL ];
 
-echo >>> tok1, nl, 14
-
-define MWE2NL [ MWE2 @-> ... NL ];
-
 echo >>> tok1, nl, 15
 
 define NONSTDNL [ NONSTD @-> ... NL ];
@@ -564,43 +560,19 @@ define TOK1NL1 [ MUTWORDNL | ENGWORDNL | WORDNL | ABBRNL ];
 
 echo >>> tok1nl2
 
-define TOK1NL2 [ PTAGNL | CONTNL ];
-
-echo >>> tok1nl3 
-
-define TOK1NL3 [ NOTYPONL| CHILDESNL ];
-
-echo >>> tok1nl4 
-
-define TOK1NL4 [  INITNL | ITEMNL ];
+define TOK1NL2 [ PTAGNL | CONTNL | NOTYPONL| CHILDESNL | ITEMNL | WEBADDRNL | NUMNL ];
 
 echo >>> tok1nl5 
 
-define TOK1NL5 [  WEBADDRNL | NUMNL ];
-
-echo >>> tok1nl5 
-
-define TOK1NL5 [  MWE2NL | NONSTDNL ];
-
-echo >>> tok1nl6 
-
-define TOK1NL6 [  DIVTAGNL | SYMBOLNL];
+define TOK1NL5 [ NONSTDNL | DIVTAGNL | SYMBOLNL ];
 
 echo >>> tok1nlc1 
 
-define TOK1NLC1 [  TOK1NL1 | TOK1NL2];
-
-echo >>> tok1nlc2 
-
-define TOK1NLC2 [  TOK1NL3 | TOK1NL4];
-
-echo >>> tok1nlc3 
-
-define TOK1NLC3 [  TOK1NL5 | TOK1NL6];
+define TOK1NLC1 [  TOK1NL1 | TOK1NL2 | TOK1NL5];
 
 echo >>> tok1nlc4 
 
-define TOK1NL [  TOK1NLC1 | TOK1NLC2 | TOK1NLC3];
+define TOK1NL [  TOK1NLC1 |INITNL ];
 
 
 
