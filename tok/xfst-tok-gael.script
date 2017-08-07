@@ -47,7 +47,8 @@ echo >>> define punctuation
 
 #define SINGLE [%" | %. | %, | %; | %: | %! | %? | %( | %) | %[ | %] | %{ | %} |%'| %_ | %` | %# | %& | %£ | %€ | %< | %> |%/ | %° | %· |® | ¡|¿];
 #without underscore
-define SINGLE [%" | %. | %, | %; | %: | %! | %? | %( | %) | %[ | %] | %{ | %} |%'| %` | %# | %& | %£ | %€ | %< | %> |%/ | %° | %· |® | ¡|¿];
+define SINGLE [%" | %. | %, | %; | %: | %! | %? | %( | %) | %[ | %] | %{ | %} |%'| %` | %# | %& | %< | %> |%/ ];
+define SINGLESYMBOL [ %£ | %€ | %° | %· |® | ¡|¿];
 
 #"
 #define PUNCT [ %. %. (%.) | %` %` | %' %'| %, %, ];
@@ -60,7 +61,7 @@ define Char \[WS | SINGLE];
 
 echo >>> define symbol
 
-define SYMBOL [ SINGLE | PUNCT ] ;
+define SYMBOL [ SINGLE | PUNCT | SINGLESYMBOL ] ;
 
 echo >>> define word
 
