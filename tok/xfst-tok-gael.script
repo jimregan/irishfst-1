@@ -283,34 +283,6 @@ define ENGWORD [ Char Char+ [' s]];
 #--------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 echo >>> some multi-word expressions
 
 define MWE [ 
@@ -500,9 +472,7 @@ define MWE1 [M1 MWE M2] ;
 echo >>> define tokens 
 
 
-define TokenNoSym [ MUTWORD | ENGWORD | WORD | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | MWE2 | NONSTD | DIVTAG];
-
-define Token [ TokenNoSym | SYMBOL ];
+define Token [ MUTWORD | ENGWORD | WORD | ABBR | PTAG | CONT | NOTYPO| CHILDES | INIT | ITEM | WEBADDR | NUM | MWE2 | NONSTD | DIVTAG | SYMBOL];
 
 #--------------------------------------------
 
@@ -516,21 +486,81 @@ echo >>> tok1, mwe
 
 define TOK1MWE [ MWE @-> M1 ... M2 ];
 
-echo >>> tok1, bound _ bound
+echo >>> tok1, nl, 1
 
-#define TOK1Bounds [ Bound _ Bound ];
-
-echo >>> tok1, nl
-
-define TOK1NL1 [ TokenNoSym @-> ... NL ];
+define MUTWORDNL [ MUTWORD @-> ... NL ];
 
 echo >>> tok1, nl, 2
 
-define TOK1NL2 [ SYMBOL @-> ... NL ];
+define ENGWORDNL [ ENGWORD @-> ... NL ];
+
+echo >>> tok1, nl, 3
+
+define WORDNL [ WORD @-> ... NL ];
+
+echo >>> tok1, nl, 4
+
+define ABBRNL [ ABBR @-> ... NL ];
+
+echo >>> tok1, nl, 5
+
+define PTAGNL [ PTAG @-> ... NL ];
+
+echo >>> tok1, nl, 6
+
+define PTAGNL [ PTAG @-> ... NL ];
+
+echo >>> tok1, nl, 7
+
+define CONTNL [ CONT @-> ... NL ];
+
+echo >>> tok1, nl, 8
+
+define NOTYPONL [ NOTYPO @-> ... NL ];
+
+echo >>> tok1, nl, 9
+
+define CHILDESNL [ CHILDES @-> ... NL ];
+
+echo >>> tok1, nl, 10
+
+define INITNL [ INIT @-> ... NL ];
+
+echo >>> tok1, nl, 11
+
+define ITEMNL [ ITEM @-> ... NL ];
+
+echo >>> tok1, nl, 12
+
+define WEBADDRNL [ WEBADDR @-> ... NL ];
+
+echo >>> tok1, nl, 13
+
+define NUMNL [ NUM @-> ... NL ];
+
+echo >>> tok1, nl, 14
+
+define MWE2NL [ MWE2 @-> ... NL ];
+
+echo >>> tok1, nl, 15
+
+define NONSTDNL [ NONSTD @-> ... NL ];
+
+echo >>> tok1, nl, 16
+
+define DIVTAGNL [ DIVTAG @-> ... NL ];
+
+echo >>> tok1, nl, 17
+
+define SYMBOLNL [ SYMBOL @-> ... NL ];
 
 echo >>> tok1, nl
 
 define TOK1NL [ TOK1NL1 .o. TOK1NL2 ];
+
+echo >>> tok1nl
+
+define TOK1NL [ MUTWORDNL | ENGWORDNL | WORDNL | ABBRNL | PTAGNL | CONTNL | NOTYPONL| CHILDESNL | INITNL | ITEMNL | WEBADDRNL | NUMNL | MWE2NL | NONSTDNL | DIVTAGNL | SYMBOLNL];
 
 echo >>> tok1, remove bounds
 
