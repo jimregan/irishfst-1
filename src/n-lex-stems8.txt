@@ -99,3 +99,4 @@ comhchéim	Nf2-6;	! equal term
 clársheoltóireacht	Nf3-SINGULAR;	! windsurfing
 clársheoltóir	Nm3-1;	! windsurfer
 traslitriú	Nm5-3;	! transliteration
+Breatimeacht	Nm3-3;	! Brexit
