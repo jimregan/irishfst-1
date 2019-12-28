@@ -407,6 +407,9 @@ splaghsáilte+Verbal+Adj:splaghsáilte	VA-INIT;	! ADJECTIVE
 stropáil+Verbal+Noun+VTI:stropáil	VN-INIT;	! VERB::stropáil; Grammar::(pres -álann; vn ~ f, gs -ála)
 stropáil+Verbal+Noun+VTI+Gen:stropála	VN-INIT;	! GENITIVE
 stropáilte+Verbal+Adj:stropáilte	VA-INIT;	! ADJECTIVE
+brabhsáil+Verbal+Noun+VTI:brabhsáil	VN-INIT;	! VERB::brabhsáil; Grammar::(pres -álann; vn ~ f, gs -ála)
+brabhsáil+Verbal+Noun+VTI+Gen:brabhsála	VN-INIT;	! GENITIVE
+brabhsáilte+Verbal+Adj:brabhsáilte	VA-INIT;	! ADJECTIVE
 tiáil+Verbal+Noun+VTI:tiáil	VN-INIT;	! VERB::tiáil; Grammar::(pres -álann; vn ~ f, gs -ála)
 tiáil+Verbal+Noun+VTI+Gen:tiála	VN-INIT;	! GENITIVE
 tiáilte+Verbal+Adj:tiáilte	VA-INIT;	! ADJECTIVE

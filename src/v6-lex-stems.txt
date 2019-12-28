@@ -135,6 +135,7 @@ scriobláil+Verb+VTI:scriobláil	V1-SL-LC;	! scribble
 smugláil+Verb+VTI:smugláil	V1-SL-LC;	! smuggle
 splaghsáil+Verb+VTI:splaghsáil	V1-SL-LC;	! splice
 stropáil+Verb+VTI:stropáil	V1-SL-LC;	! strop
+brabhsáil+Verb+VI:brabhsáil	V1-SL-LC;	! browse !! ... the internet
 tiáil+Verb+VTI:tiáil	V1-SL-LV;	! tee
 trangláil+Verb+VTI:trangláil	V1-SL-LC;	! lumber
 trasnáil+Verb+VTI:trasnáil	V1-SL-LC;	! filibuster
